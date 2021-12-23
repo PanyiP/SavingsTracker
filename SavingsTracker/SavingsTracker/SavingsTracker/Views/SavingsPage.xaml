@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SavingsTracker.Views.SavingsPage"
+             x:Name="SavingsPageName"
+             xmlns:vm="clr-namespace:SavingsTracker.ViewModels">
+
+   <ContentPage.BindingContext>
+      <vm:SavingsPageViewModel />
+   </ContentPage.BindingContext>
+
+   <RefreshView IsRefreshing="{Binding IsRefreshBusy}" Command="{Binding RefreshViewCommand}">
+      <CollectionView x:Name="ItemsListView"
+                ItemsSource="{Binding SavingAccounts}"
+                SelectionMode="None">
+         <CollectionView.Header>
+            <StackLayout>
+               <Label Text="Megtakarítási számlák" Margin="10" FontSize="24" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+            </StackLayout>
+         </CollectionView.Header>
+         <CollectionView.ItemTemplate>
+            <DataTemplate>
+               <Grid Padding="10">
+                  <Grid.RowDefinitions>
+                     <RowDefinition Height="auto" />
+                     <RowDefinition Height="auto" />
+                     <RowDefinition Height="*" />
+                  </Grid.RowDefinitions>
+                  <Grid.ColumnDefinitions>
+                     <ColumnDefinition Width="auto" />
+                     <ColumnDefinition Width="auto" />
+                     <ColumnDefinition Width="*" />
+                  </Grid.ColumnDefinitions>
+
+                  <!-- Grid.Row = 0 -->
+                  <Label Text="{Binding Name}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"
+                      LineBreakMode="NoWrap" 
+                      FontSize="20"
+                      FontAttributes="Bold" />
+                  <!-- Grid.Row = 1 -->
+                  <Label Text="{Binding CurrentBalance.Value}" Grid.Row="1" Grid.Column="0"
+                      Margin="20,0,0,0"
+                      LineBreakMode="NoWrap"
+                      FontSize="16"
+                      FontAttributes="Bold" />
+                  <Label Text="{Binding Currency}" Grid.Row="1" Grid.Column="1"
+                      LineBreakMode="NoWrap"
+                      FontSize="16" />
+                  <Label Text="{Binding CurrentBalance.DateTime}" Grid.Row="1" Grid.Column="2"
+                      LineBreakMode="NoWrap"
+                      FontSize="16"
+                         HorizontalTextAlignment="End"
+                         Margin="0,0,20,0"/>
+                  <!-- Grid.Row = 2 -->
+                  <Line Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3"
+                      HeightRequest="1"
+                      BackgroundColor="Black"/>
+
+                  <Grid.GestureRecognizers>
+                     <TapGestureRecognizer 
+                        NumberOfTapsRequired="1"
+                        Command="{Binding BindingContext.SavingAccountTapped, Source={x:Reference SavingsPageName}}" CommandParameter="{Binding .}">
+                     </TapGestureRecognizer>
+                  </Grid.GestureRecognizers>
+               </Grid>
+            </DataTemplate>
+         </CollectionView.ItemTemplate>
+      </CollectionView>
+   </RefreshView>
+</ContentPage>

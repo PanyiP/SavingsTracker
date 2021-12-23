@@ -1,8 +1,4 @@
-﻿using SavingsTracker.Services;
-using SavingsTracker.Views;
-using System;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+﻿using Xamarin.Forms;
 
 namespace SavingsTracker
 {
@@ -13,7 +9,6 @@ namespace SavingsTracker
       {
          InitializeComponent();
 
-         DependencyService.Register<MockDataStore>();
          MainPage = new AppShell();
       }
 
