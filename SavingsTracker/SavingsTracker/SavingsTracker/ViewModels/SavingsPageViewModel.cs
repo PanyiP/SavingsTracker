@@ -8,7 +8,12 @@ namespace SavingsTracker.ViewModels
 {
    public class SavingsPageViewModel : BaseViewModel
    {
-      public ObservableCollection<SavingAccount> SavingAccounts { get; set; }
+      private ObservableCollection<SavingAccount> savingAccounts;
+      public ObservableCollection<SavingAccount> SavingAccounts
+      {
+         get { return savingAccounts; }
+         set { SetProperty(ref savingAccounts, value); }
+      }
 
       private bool isRefreshBusy;
       public bool IsRefreshBusy
@@ -21,14 +26,15 @@ namespace SavingsTracker.ViewModels
          }
       }
 
-      public ICommand SavingAccountTapped { get; }
+      public ICommand SavingAccountTappedCommand { get; }
       public ICommand RefreshViewCommand { get; }
+      public ICommand NewSavingAccountCommand { get; }
+      public ICommand DeleteSavingAccountCommand { get; }
+      public ICommand EditSavingAccountCommand { get; }
 
       public SavingsPageViewModel()
       {
-         SetupSavingAccountsAsync();
-
-         SavingAccountTapped = new Command<object>( (obj) =>
+         SavingAccountTappedCommand = new Command<object>( (obj) =>
          {
             //Navigate to SavingAccountDetailsPage
             //string value = obj.ToString();
@@ -39,10 +45,8 @@ namespace SavingsTracker.ViewModels
             {
                IsRefreshBusy = true;
 
-               foreach (var account in SavingAccounts)
-               {
-                  await SavingAccountDBService.RefreshSavingAccount(account);
-               }
+               SavingAccounts?.Clear();
+               SavingAccounts = new ObservableCollection<SavingAccount>(await SavingAccountDBService.GetSavingAccountsAsync());
 
                IsRefreshBusy = false;
             },
@@ -51,11 +55,29 @@ namespace SavingsTracker.ViewModels
                return !IsRefreshBusy;
             }
          );
-      }
 
-      private async void SetupSavingAccountsAsync()
-      {
-         SavingAccounts = await SavingAccountDBService.SetupMockDataAsync();
+         NewSavingAccountCommand = new Command(async () =>
+         {
+            await SavingAccountDBService.AddSavingAccountAsync(new SavingAccount("Teszt", "HUF"));
+
+            (RefreshViewCommand as Command).Execute(null);
+         });
+
+         DeleteSavingAccountCommand = new Command<SavingAccount>(async (account) =>
+         {
+            await SavingAccountDBService.DeleteSavingAccountAsync(account);
+
+            (RefreshViewCommand as Command).Execute(null);
+         });
+
+         EditSavingAccountCommand = new Command<SavingAccount>(async (account) =>
+         {
+            //TODO: Implement EditSavingAccountCommand Command
+
+            (RefreshViewCommand as Command).Execute(null);
+         });
+
+         (RefreshViewCommand as Command).Execute(null);
       }
    }
 }

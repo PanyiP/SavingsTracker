@@ -3,66 +3,104 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SavingsTracker.Views.SavingsPage"
              x:Name="SavingsPageName"
-             xmlns:vm="clr-namespace:SavingsTracker.ViewModels">
+             xmlns:vm="clr-namespace:SavingsTracker.ViewModels"
+             xmlns:fontAwesome="clr-namespace:FontAwesome">
 
    <ContentPage.BindingContext>
       <vm:SavingsPageViewModel />
    </ContentPage.BindingContext>
 
+   <ContentPage.ToolbarItems>
+      <ToolbarItem Text="Új számla" Command="{Binding NewSavingAccountCommand}" />
+   </ContentPage.ToolbarItems>
+
    <RefreshView IsRefreshing="{Binding IsRefreshBusy}" Command="{Binding RefreshViewCommand}">
       <CollectionView x:Name="ItemsListView"
                 ItemsSource="{Binding SavingAccounts}"
                 SelectionMode="None">
+         
          <CollectionView.Header>
             <StackLayout>
                <Label Text="Megtakarítási számlák" Margin="10" FontSize="24" FontAttributes="Bold" HorizontalTextAlignment="Center" />
             </StackLayout>
          </CollectionView.Header>
+         
          <CollectionView.ItemTemplate>
             <DataTemplate>
-               <Grid Padding="10">
-                  <Grid.RowDefinitions>
-                     <RowDefinition Height="auto" />
-                     <RowDefinition Height="auto" />
-                     <RowDefinition Height="*" />
-                  </Grid.RowDefinitions>
-                  <Grid.ColumnDefinitions>
-                     <ColumnDefinition Width="auto" />
-                     <ColumnDefinition Width="auto" />
-                     <ColumnDefinition Width="*" />
-                  </Grid.ColumnDefinitions>
+               <SwipeView>
+                  <SwipeView.LeftItems>
+                     <SwipeItems>
+                        <SwipeItemView>
+                           <StackLayout Orientation="Horizontal" Margin="20">
+                              <Image HorizontalOptions="Center" VerticalOptions="Center">
+                                 <Image.Source>
+                                    <FontImageSource FontFamily="FAFS" Glyph="{x:Static fontAwesome:FontAwesomeIcons.TrashAlt}" Color="Red" />
+                                 </Image.Source>
+                                 
+                                 <Image.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1"
+                                              Command="{Binding BindingContext.DeleteSavingAccountCommand, Source={x:Reference SavingsPageName}}" CommandParameter="{Binding .}" />
+                                 </Image.GestureRecognizers>
+                              </Image>
 
-                  <!-- Grid.Row = 0 -->
-                  <Label Text="{Binding Name}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"
-                      LineBreakMode="NoWrap" 
-                      FontSize="20"
-                      FontAttributes="Bold" />
-                  <!-- Grid.Row = 1 -->
-                  <Label Text="{Binding CurrentBalance.Value}" Grid.Row="1" Grid.Column="0"
-                      Margin="20,0,0,0"
-                      LineBreakMode="NoWrap"
-                      FontSize="16"
-                      FontAttributes="Bold" />
-                  <Label Text="{Binding Currency}" Grid.Row="1" Grid.Column="1"
-                      LineBreakMode="NoWrap"
-                      FontSize="16" />
-                  <Label Text="{Binding CurrentBalance.DateTime}" Grid.Row="1" Grid.Column="2"
-                      LineBreakMode="NoWrap"
-                      FontSize="16"
-                         HorizontalTextAlignment="End"
-                         Margin="0,0,20,0"/>
-                  <!-- Grid.Row = 2 -->
-                  <Line Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3"
-                      HeightRequest="1"
-                      BackgroundColor="Black"/>
+                              <Image HorizontalOptions="Center" VerticalOptions="Center" Margin="20,0,0,0">
+                                 <Image.Source>
+                                    <FontImageSource FontFamily="FAFS" Glyph="{x:Static fontAwesome:FontAwesomeIcons.Edit}" Color="DarkGray" />
+                                 </Image.Source>
 
-                  <Grid.GestureRecognizers>
-                     <TapGestureRecognizer 
-                        NumberOfTapsRequired="1"
-                        Command="{Binding BindingContext.SavingAccountTapped, Source={x:Reference SavingsPageName}}" CommandParameter="{Binding .}">
-                     </TapGestureRecognizer>
-                  </Grid.GestureRecognizers>
-               </Grid>
+                                 <Image.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1"
+                                              Command="{Binding BindingContext.EditSavingAccountCommand, Source={x:Reference SavingsPageName}}" CommandParameter="{Binding .}" />
+                                 </Image.GestureRecognizers>
+                              </Image>
+                           </StackLayout>
+                        </SwipeItemView>
+                     </SwipeItems>
+                  </SwipeView.LeftItems>
+
+                  <Grid Padding="10">
+                     <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="*" />
+                     </Grid.RowDefinitions>
+                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="*" />
+                     </Grid.ColumnDefinitions>
+
+                     <Grid.GestureRecognizers>
+                        <TapGestureRecognizer NumberOfTapsRequired="1"
+                                              Command="{Binding BindingContext.SavingAccountTappedCommand, Source={x:Reference SavingsPageName}}" CommandParameter="{Binding .}" />
+                     </Grid.GestureRecognizers>
+
+                     <!-- Grid.Row = 0 -->
+                     <Label Text="{Binding Name}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"
+                            LineBreakMode="WordWrap" 
+                            FontSize="20"
+                            FontAttributes="Bold" />
+                     <!-- Grid.Row = 1 -->
+                     <Label Text="{Binding CurrentBalance.Value}" Grid.Row="1" Grid.Column="0"
+                            Margin="20,0,0,0"
+                            LineBreakMode="NoWrap"
+                            FontSize="16"
+                            FontAttributes="Bold" />
+                     <Label Text="{Binding Currency}" Grid.Row="1" Grid.Column="1"
+                            LineBreakMode="NoWrap"
+                            FontSize="16" />
+                     <Label Text="{Binding CurrentBalance.DateTime}" Grid.Row="1" Grid.Column="2"
+                            LineBreakMode="WordWrap"
+                            FontSize="16"
+                            HorizontalTextAlignment="End"
+                            Margin="0,0,20,0"/>
+                     <!-- Grid.Row = 2 -->
+                     <Line Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3"
+                           HeightRequest="1"
+                           BackgroundColor="Black"/>
+
+                  </Grid>
+               </SwipeView>
             </DataTemplate>
          </CollectionView.ItemTemplate>
       </CollectionView>
