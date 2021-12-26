@@ -7,7 +7,7 @@ using Xamarin.Forms;
 
 namespace SavingsTracker.ViewModels
 {
-   public class SavingsPageViewModel : BaseViewModel
+   public class SavingAccountsPageViewModel : BaseViewModel
    {
       private ObservableCollection<SavingAccount> savingAccounts;
       public ObservableCollection<SavingAccount> SavingAccounts
@@ -33,13 +33,12 @@ namespace SavingsTracker.ViewModels
       public ICommand DeleteSavingAccountCommand { get; }
       public ICommand EditSavingAccountCommand { get; }
 
-      public SavingsPageViewModel()
+      public SavingAccountsPageViewModel()
       {
-         SavingAccountTappedCommand = new Command<object>( (obj) =>
+         SavingAccountTappedCommand = new Command<object>(async (obj) =>
          {
-            //TODO: Implement SavingAccountTappedCommand Command
-
-            (RefreshViewCommand as Command).Execute(null);
+            string accountId = (obj as SavingAccount).AccountId;
+            await Shell.Current.GoToAsync($"{nameof(SavingAccountDetailsPage)}?SavingAccountId={accountId}", true);
          });
 
          RefreshViewCommand = new Command(
@@ -83,8 +82,6 @@ namespace SavingsTracker.ViewModels
 
             (RefreshViewCommand as Command).Execute(null);
          });
-
-         //(RefreshViewCommand as Command).Execute(null);
       }
    }
 }

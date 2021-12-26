@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="SavingsTracker.Views.SavingsPage"
-             x:Name="SavingsPageName"
+             x:Class="SavingsTracker.Views.SavingAccountsPage"
+             x:Name="SavingAccountsPageName"
              xmlns:vm="clr-namespace:SavingsTracker.ViewModels"
              xmlns:fontAwesome="clr-namespace:FontAwesome">
 
    <ContentPage.BindingContext>
-      <vm:SavingsPageViewModel />
+      <vm:SavingAccountsPageViewModel />
    </ContentPage.BindingContext>
 
    <ContentPage.ToolbarItems>
@@ -39,7 +39,7 @@
                                  
                                  <Image.GestureRecognizers>
                                     <TapGestureRecognizer NumberOfTapsRequired="1"
-                                              Command="{Binding BindingContext.DeleteSavingAccountCommand, Source={x:Reference SavingsPageName}}" CommandParameter="{Binding .}" />
+                                              Command="{Binding BindingContext.DeleteSavingAccountCommand, Source={x:Reference SavingAccountsPageName}}" CommandParameter="{Binding .}" />
                                  </Image.GestureRecognizers>
                               </Image>
 
@@ -50,7 +50,7 @@
 
                                  <Image.GestureRecognizers>
                                     <TapGestureRecognizer NumberOfTapsRequired="1"
-                                              Command="{Binding BindingContext.EditSavingAccountCommand, Source={x:Reference SavingsPageName}}" CommandParameter="{Binding .}" />
+                                              Command="{Binding BindingContext.EditSavingAccountCommand, Source={x:Reference SavingAccountsPageName}}" CommandParameter="{Binding .}" />
                                  </Image.GestureRecognizers>
                               </Image>
                            </StackLayout>
@@ -72,7 +72,7 @@
 
                      <Grid.GestureRecognizers>
                         <TapGestureRecognizer NumberOfTapsRequired="1"
-                                              Command="{Binding BindingContext.SavingAccountTappedCommand, Source={x:Reference SavingsPageName}}" CommandParameter="{Binding .}" />
+                                              Command="{Binding BindingContext.SavingAccountTappedCommand, Source={x:Reference SavingAccountsPageName}}" CommandParameter="{Binding .}" />
                      </Grid.GestureRecognizers>
 
                      <!-- Grid.Row = 0 -->

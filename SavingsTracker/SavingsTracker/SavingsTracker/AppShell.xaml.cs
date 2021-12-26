@@ -10,6 +10,7 @@ namespace SavingsTracker
       {
          InitializeComponent();
 
+         Routing.RegisterRoute(nameof(SavingAccountDetailsPage), typeof(SavingAccountDetailsPage));
          Routing.RegisterRoute(nameof(NewSavingAccountPage), typeof(NewSavingAccountPage));
       }
 
@@ -17,5 +18,8 @@ namespace SavingsTracker
       {
          await Current.GoToAsync("//LoginPage");
       }
+
+      //TODO: Make the APP multilingual
+      //TODO: Make it possible to have normal or dark theme
    }
 }

@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:SavingsTracker.ViewModels"
+             xmlns:fontAwesome="clr-namespace:FontAwesome"
+             xmlns:xct="clr-namespace:Xamarin.CommunityToolkit.UI.Views;assembly=Xamarin.CommunityToolkit"
+             x:Name="SavingAccountDetailsPageName"
+             x:Class="SavingsTracker.Views.SavingAccountDetailsPage">
+
+   <ContentPage.BindingContext>
+      <vm:SavingAccountDetailsPageViewModel />
+   </ContentPage.BindingContext>
+
+   <xct:TabView TabIndicatorColor="{StaticResource Primary}">
+      <xct:TabViewItem Text="Előzmények">
+         <RefreshView IsRefreshing="{Binding IsRefreshBusy}" Command="{Binding RefreshViewCommand}">
+            <CollectionView x:Name="ItemsListView"
+                ItemsSource="{Binding Balances}"
+                SelectionMode="None">
+
+               <CollectionView.Header>
+                  <StackLayout>
+                     <Label Text="{Binding SavingAccount.Name}" Margin="10" FontSize="24" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                  </StackLayout>
+               </CollectionView.Header>
+
+               <CollectionView.ItemTemplate>
+                  <DataTemplate>
+                     <SwipeView>
+                        <SwipeView.LeftItems>
+                           <SwipeItems>
+                              <SwipeItemView>
+                                 <StackLayout Orientation="Horizontal" Margin="10">
+                                    <Image HorizontalOptions="Center" VerticalOptions="Center">
+                                       <Image.Source>
+                                          <FontImageSource FontFamily="FAFS" Glyph="{x:Static fontAwesome:FontAwesomeIcons.TrashAlt}" Color="Red" />
+                                       </Image.Source>
+
+                                       <Image.GestureRecognizers>
+                                          <TapGestureRecognizer NumberOfTapsRequired="1"
+                                              Command="{Binding BindingContext.DeleteBalanceCommand, Source={x:Reference SavingAccountDetailsPageName}}" CommandParameter="{Binding .}" />
+                                       </Image.GestureRecognizers>
+                                    </Image>
+
+                                    <Image HorizontalOptions="Center" VerticalOptions="Center" Margin="20,0,0,0">
+                                       <Image.Source>
+                                          <FontImageSource FontFamily="FAFS" Glyph="{x:Static fontAwesome:FontAwesomeIcons.Edit}" Color="DarkGray" />
+                                       </Image.Source>
+
+                                       <Image.GestureRecognizers>
+                                          <TapGestureRecognizer NumberOfTapsRequired="1"
+                                              Command="{Binding BindingContext.EditBalanceCommand, Source={x:Reference SavingAccountDetailsPageName}}" CommandParameter="{Binding .}" />
+                                       </Image.GestureRecognizers>
+                                    </Image>
+                                 </StackLayout>
+                              </SwipeItemView>
+                           </SwipeItems>
+                        </SwipeView.LeftItems>
+
+                        <Grid Padding="10">
+                           <Grid.RowDefinitions>
+                              <RowDefinition Height="auto" />
+                              <RowDefinition Height="*" />
+                           </Grid.RowDefinitions>
+                           <Grid.ColumnDefinitions>
+                              <ColumnDefinition Width="auto" />
+                              <ColumnDefinition Width="auto" />
+                              <ColumnDefinition Width="*" />
+                           </Grid.ColumnDefinitions>
+
+                           <!-- Grid.Row = 0 -->
+                           <Label Text="{Binding Value}" Grid.Row="0" Grid.Column="0"
+                            Margin="20,0,0,0"
+                            LineBreakMode="NoWrap"
+                            FontSize="16"
+                            FontAttributes="Bold" />
+                           <Label Text="{Binding BindingContext.SavingAccount.Currency, Source={x:Reference SavingAccountDetailsPageName}}" Grid.Row="0" Grid.Column="1"
+                            LineBreakMode="NoWrap"
+                            FontSize="16" />
+                           <Label Text="{Binding DateTime}" Grid.Row="0" Grid.Column="2"
+                            LineBreakMode="WordWrap"
+                            FontSize="16"
+                            HorizontalTextAlignment="End"
+                            Margin="0,0,20,0"/>
+                           <!-- Grid.Row = 1 -->
+                           <Line Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"
+                           HeightRequest="1"
+                           BackgroundColor="Black"/>
+
+                        </Grid>
+                     </SwipeView>
+                  </DataTemplate>
+               </CollectionView.ItemTemplate>
+            </CollectionView>
+         </RefreshView>
+      </xct:TabViewItem>
+
+      <xct:TabViewItem Text="Grafikon">
+         <Label Text="Ide jön majd a grafikon :)" HorizontalOptions="Center" Margin="20" />
+      </xct:TabViewItem>
+      
+   </xct:TabView>
+   
+</ContentPage>

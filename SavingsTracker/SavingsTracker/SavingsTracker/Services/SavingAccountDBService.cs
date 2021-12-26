@@ -12,29 +12,6 @@ namespace SavingsTracker.Services
    {
       private static SQLiteAsyncConnection db;
 
-      #region MockData
-      public static async Task SetupMockDataAsync()
-      {
-         SavingAccount account1 = new SavingAccount("Folyószámla", "HUF");
-         await AddNewSavingAccountAsync(account1);
-         await AddNewBalanceAsync(new Balance(account1.AccountId, new DateTime(2021, 10, 5, 20, 0, 0), 100000.0));
-         await AddNewBalanceAsync(new Balance(account1.AccountId, new DateTime(2021, 11, 5, 20, 0, 0), 200000.0));
-         await AddNewBalanceAsync(new Balance(account1.AccountId, new DateTime(2021, 12, 5, 20, 0, 0), 300000.0));
-
-         SavingAccount account2 = new SavingAccount("TBSZ 2020", "HUF");
-         await AddNewSavingAccountAsync(account2);
-         await AddNewBalanceAsync(new Balance(account2.AccountId, new DateTime(2021, 10, 5, 20, 0, 0), 500000.0));
-         await AddNewBalanceAsync(new Balance(account2.AccountId, new DateTime(2021, 11, 5, 20, 0, 0), 550000.0));
-         await AddNewBalanceAsync(new Balance(account2.AccountId, new DateTime(2021, 12, 5, 20, 0, 0), 600000.0));
-
-         SavingAccount account3 = new SavingAccount("TBSZ 2021", "HUF");
-         await AddNewSavingAccountAsync(account3);
-         await AddNewBalanceAsync(new Balance(account3.AccountId, new DateTime(2021, 10, 5, 20, 0, 0), 1000000.0));
-         await AddNewBalanceAsync(new Balance(account3.AccountId, new DateTime(2021, 11, 5, 20, 0, 0), 2000000.0));
-         await AddNewBalanceAsync(new Balance(account3.AccountId, new DateTime(2021, 12, 5, 20, 0, 0), 3000000.0));
-      }
-      #endregion
-
       static async Task Init()
       {
          if (db != null)
@@ -45,17 +22,10 @@ namespace SavingsTracker.Services
          var databasePath = Path.Combine(FileSystem.AppDataDirectory, "MyData.db");
 
          db = new SQLiteAsyncConnection(databasePath);
-         // TODO: Remove Mock data: Remove DropTableAsync()
          //await db.DropTableAsync<SavingAccount>();
          //await db.DropTableAsync<Balance>();
          await db.CreateTableAsync<SavingAccount>();
          await db.CreateTableAsync<Balance>();
-
-         // TODO: Remove Mock data: Remove SetupMockDataAsync()
-         if (await db.Table<SavingAccount>().CountAsync() == 0)
-         {
-            await SetupMockDataAsync();
-         }
       }
 
       #region SavingAccount table functions
@@ -87,6 +57,13 @@ namespace SavingsTracker.Services
          await Init();
 
          return await db.Table<SavingAccount>().ToListAsync();
+      }
+
+      public static async Task<SavingAccount> GetSavingAccountAsync(string id)
+      {
+         await Init();
+
+         return await db.Table<SavingAccount>().Where(account => account.AccountId == id).FirstAsync();
       }
 
       public static async Task<bool> UpdateSavingAccountAsync(SavingAccount account)
