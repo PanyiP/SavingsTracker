@@ -36,8 +36,9 @@ namespace SavingsTracker.ViewModels
       {
          SavingAccountTappedCommand = new Command<object>( (obj) =>
          {
-            //Navigate to SavingAccountDetailsPage
-            //string value = obj.ToString();
+            //TODO: Implement SavingAccountTappedCommand Command
+
+            (RefreshViewCommand as Command).Execute(null);
          });
 
          RefreshViewCommand = new Command(
@@ -45,8 +46,15 @@ namespace SavingsTracker.ViewModels
             {
                IsRefreshBusy = true;
 
+               // Clear the SavingAccounts ObservableCollection
                SavingAccounts?.Clear();
+               // Get all SavingAccounts from the database
                SavingAccounts = new ObservableCollection<SavingAccount>(await SavingAccountDBService.GetSavingAccountsAsync());
+               // Get the CurrentBalance of all SavingAccounts
+               foreach (var account in SavingAccounts)
+               {
+                  account.CurrentBalance = await SavingAccountDBService.GetLatestBalanceAsync(account);
+               }
 
                IsRefreshBusy = false;
             },
@@ -58,7 +66,10 @@ namespace SavingsTracker.ViewModels
 
          NewSavingAccountCommand = new Command(async () =>
          {
-            await SavingAccountDBService.AddSavingAccountAsync(new SavingAccount("Teszt", "HUF"));
+            //TODO: Implement NewSavingAccountCommand Command
+            SavingAccount newAccount = new SavingAccount("Teszt", "HUF");
+
+            await SavingAccountDBService.AddNewSavingAccountAsync(newAccount);
 
             (RefreshViewCommand as Command).Execute(null);
          });

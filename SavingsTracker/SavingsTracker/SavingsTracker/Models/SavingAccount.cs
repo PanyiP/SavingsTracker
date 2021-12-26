@@ -1,8 +1,5 @@
 ﻿using SQLite;
 using System;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace SavingsTracker.Models
 {
@@ -24,21 +21,19 @@ namespace SavingsTracker.Models
          set { SetProperty(ref _name, value); }
       }
 
-      private readonly ObservableCollection<Balance> _balanceCollection;
-      public ObservableCollection<Balance> BalanceCollection { get { return _balanceCollection; } }
-
       private string _currency;
       public string Currency
       {
          get { return _currency; }
          set { SetProperty(ref _currency, value); }
       }
-      #endregion
 
-      #region Auto Calculated Properties
+      private Balance _currentBalance;
+      [Ignore]
       public Balance CurrentBalance
       {
-         get { return BalanceCollection.LastOrDefault(); }
+         get { return _currentBalance; }
+         set { SetProperty(ref _currentBalance, value); }
       }
       #endregion
 
@@ -48,7 +43,6 @@ namespace SavingsTracker.Models
          _accountId = Guid.NewGuid().ToString();
          _name = "";
          _currency = "";
-         _balanceCollection = new ObservableCollection<Balance>();
       }
 
       public SavingAccount(string name, string currency)
@@ -56,11 +50,11 @@ namespace SavingsTracker.Models
          _accountId = Guid.NewGuid().ToString();
          _name = name;
          _currency = currency;
-         _balanceCollection = new ObservableCollection<Balance>();
       }
       #endregion
 
       #region Methods
+      /*
       public async Task<bool> AddNewBalanceAsync(DateTime datetime, Double value)
       {
          Balance newBalance = new Balance(datetime, value);
@@ -96,13 +90,28 @@ namespace SavingsTracker.Models
 
          return await Task.FromResult(true);
       }
+      */
       #endregion
    }
 
    public class Balance : BaseModel
    {
+      #region Properties
+      private string _balanceId;
       [PrimaryKey]
-      public string Id { get; }
+      public string BalanceId
+      {
+         get { return _balanceId; }
+         set { SetProperty(ref _balanceId, value); }
+      }
+
+      private string _accountId;
+      [Indexed]
+      public string AccountId
+      {
+         get { return _accountId; }
+         set { SetProperty(ref _accountId, value); }
+      }
 
       private DateTime dateTime;
       public DateTime DateTime
@@ -117,19 +126,26 @@ namespace SavingsTracker.Models
          get { return _value; }
          set { SetProperty(ref _value, value); }
       }
+      #endregion
 
-      public Balance(DateTime datetime, Double value)
+      #region Constructor
+      public Balance() { }
+
+      public Balance(string accountID, DateTime datetime, Double value)
       {
-         Id = Guid.NewGuid().ToString();
+         BalanceId = Guid.NewGuid().ToString();
+         AccountId = accountID;
          DateTime = datetime;
          Value = value;
       }
 
-      public Balance(string id, DateTime datetime, Double value)
+      public Balance(string id, string accountID, DateTime datetime, Double value)
       {
-         Id = id;
+         BalanceId = id;
+         AccountId = accountID;
          DateTime = datetime;
          Value = value;
       }
+      #endregion
    }
 }
