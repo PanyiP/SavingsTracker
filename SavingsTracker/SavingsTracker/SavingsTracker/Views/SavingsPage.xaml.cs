@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SavingsTracker.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,14 @@ namespace SavingsTracker.Views
       public SavingsPage()
       {
          InitializeComponent();
+      }
+
+      protected override void OnAppearing()
+      {
+         var vm = (SavingsPageViewModel)BindingContext;
+         vm.RefreshViewCommand.Execute(vm);
+
+         base.OnAppearing();
       }
    }
 }

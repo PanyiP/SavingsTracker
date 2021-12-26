@@ -142,14 +142,23 @@ namespace SavingsTracker.Services
 
          // Get the latest Balance
          Balance return_value = new Balance();
-         return_value.DateTime = new DateTime(1900, 1, 1);
-         foreach (var balance in balances)
+         if (balances.Count > 0)
          {
-            if (balance.DateTime > return_value.DateTime)
+            return_value.DateTime = new DateTime(1900, 1, 1);
+            foreach (var balance in balances)
             {
-               return_value = balance;
+               if (balance.DateTime > return_value.DateTime)
+               {
+                  return_value = balance;
+               }
             }
          }
+         else
+         {
+            return_value.DateTime = DateTime.Now;
+            return_value.Value = 0.0;
+         }
+
 
          return return_value;
       }

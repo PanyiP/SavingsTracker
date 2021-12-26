@@ -2,6 +2,7 @@
 <Shell xmlns="http://xamarin.com/schemas/2014/forms" 
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:local="clr-namespace:SavingsTracker.Views"
+       xmlns:fontAwesome="clr-namespace:FontAwesome"
        Title="SavingsTracker"
        x:Class="SavingsTracker.AppShell">
 
@@ -54,6 +55,25 @@
             </Setter>
          </Style>
 
+         <Style TargetType="FlyoutItem" x:Key="SavingsFlyoutItem" >
+            <Style.Triggers>
+               <Trigger TargetType="FlyoutItem" Property="IsChecked" Value="True">
+                  <Setter Property="FlyoutIcon">
+                     <Setter.Value>
+                        <FontImageSource FontFamily="FAFS" Glyph="{x:Static fontAwesome:FontAwesomeIcons.ChartLine}" Color="White" />
+                     </Setter.Value>
+                  </Setter>
+               </Trigger>
+               <Trigger TargetType="FlyoutItem" Property="IsChecked" Value="False">
+                  <Setter Property="FlyoutIcon">
+                     <Setter.Value>
+                        <FontImageSource FontFamily="FAFS" Glyph="{x:Static fontAwesome:FontAwesomeIcons.ChartLine}" Color="{StaticResource Primary}" />
+                     </Setter.Value>
+                  </Setter>
+               </Trigger>
+            </Style.Triggers>
+         </Style>
+
          <!--
             Custom Style you can apply to any Flyout Item
             -->
@@ -78,7 +98,7 @@
         FlyoutDisplayOptions="AsMultipleItems" will create a separate flyout item for each child element    
         https://docs.microsoft.com/dotnet/api/xamarin.forms.shellgroupitem.flyoutdisplayoptions?view=xamarin-forms
     -->
-   <FlyoutItem Title="Savings" Icon="icon_feed.png">
+   <FlyoutItem Title="Savings" Style="{StaticResource SavingsFlyoutItem}">
       <ShellContent Route="SavingsPage" ContentTemplate="{DataTemplate local:SavingsPage}" />
    </FlyoutItem>
 

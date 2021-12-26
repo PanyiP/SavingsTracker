@@ -6,7 +6,8 @@
 /// 1: Add font files to Resources\Fonts\
 /// 2: Select the added files in the Solution explorer and in the property window set the build action to "embedded resource".
 /// 3: In the AssemblyInfo.cs file you need to export the font files. See AssemblyInfo.cs for example!
-/// 4: 
+/// 4: Add the following namespace to your XAML file: xmlns:fontAwesome="clr-namespace:FontAwesome"
+/// 5: You can add FontAwesome images by adding e.g.: <FontImageSource FontFamily="FAFS" Glyph="{x:Static fontAwesome:FontAwesomeIcons.TrashAlt}" Color="Red" />
 /// 
 /// </summary>
 

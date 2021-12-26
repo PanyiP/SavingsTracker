@@ -52,46 +52,6 @@ namespace SavingsTracker.Models
          _currency = currency;
       }
       #endregion
-
-      #region Methods
-      /*
-      public async Task<bool> AddNewBalanceAsync(DateTime datetime, Double value)
-      {
-         Balance newBalance = new Balance(datetime, value);
-
-         BalanceCollection.Add(newBalance);
-         BalanceCollection.OrderBy(balance => balance.DateTime);
-
-         OnPropertyChanged("CurrentBalance");
-
-         return await Task.FromResult(true);
-      }
-
-      public async Task<bool> DeleteBalanceAsync(string balanceId)
-      {
-         Balance toRemove = BalanceCollection.Where(
-               (Balance balance) => balance.Id == balanceId).FirstOrDefault();
-
-         BalanceCollection.Remove(toRemove);
-
-         OnPropertyChanged("CurrentBalance");
-
-         return await Task.FromResult(true);
-      }
-
-      public async Task<bool> UpdateBalanceAsync(Balance newBalance)
-      {
-         await DeleteBalanceAsync(newBalance.Id);
-
-         BalanceCollection.Add(newBalance);
-         BalanceCollection.OrderBy(balance => balance.DateTime);
-
-         OnPropertyChanged("CurrentBalance");
-
-         return await Task.FromResult(true);
-      }
-      */
-      #endregion
    }
 
    public class Balance : BaseModel

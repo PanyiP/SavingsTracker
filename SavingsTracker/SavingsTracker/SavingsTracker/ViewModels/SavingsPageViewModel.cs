@@ -2,6 +2,7 @@
 using System.Windows.Input;
 using SavingsTracker.Models;
 using SavingsTracker.Services;
+using SavingsTracker.Views;
 using Xamarin.Forms;
 
 namespace SavingsTracker.ViewModels
@@ -66,12 +67,7 @@ namespace SavingsTracker.ViewModels
 
          NewSavingAccountCommand = new Command(async () =>
          {
-            //TODO: Implement NewSavingAccountCommand Command
-            SavingAccount newAccount = new SavingAccount("Teszt", "HUF");
-
-            await SavingAccountDBService.AddNewSavingAccountAsync(newAccount);
-
-            (RefreshViewCommand as Command).Execute(null);
+            await Shell.Current.GoToAsync(nameof(NewSavingAccountPage), true);
          });
 
          DeleteSavingAccountCommand = new Command<SavingAccount>(async (account) =>
@@ -88,7 +84,7 @@ namespace SavingsTracker.ViewModels
             (RefreshViewCommand as Command).Execute(null);
          });
 
-         (RefreshViewCommand as Command).Execute(null);
+         //(RefreshViewCommand as Command).Execute(null);
       }
    }
 }
