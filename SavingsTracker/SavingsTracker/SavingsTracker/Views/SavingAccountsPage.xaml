@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="SavingsTracker.Views.SavingAccountsPage"
-             x:Name="SavingAccountsPageName"
              xmlns:vm="clr-namespace:SavingsTracker.ViewModels"
-             xmlns:fontAwesome="clr-namespace:FontAwesome">
+             xmlns:fontAwesome="clr-namespace:FontAwesome"
+             x:Class="SavingsTracker.Views.SavingAccountsPage"
+             x:Name="SavingAccountsPageName">
 
    <ContentPage.BindingContext>
       <vm:SavingAccountsPageViewModel />
    </ContentPage.BindingContext>
 
    <ContentPage.ToolbarItems>
-      <ToolbarItem Text="Új számla" Command="{Binding NewSavingAccountCommand}" />
+      <ToolbarItem Text="{Binding NewAccount.Localized}" Command="{Binding NewSavingAccountCommand}" />
    </ContentPage.ToolbarItems>
 
    <RefreshView IsRefreshing="{Binding IsRefreshBusy}" Command="{Binding RefreshViewCommand}">
@@ -21,7 +21,7 @@
          
          <CollectionView.Header>
             <StackLayout>
-               <Label Text="Megtakarítási számlák" Margin="10" FontSize="24" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+               <Label Text="{Binding SavingAccountsHeader.Localized}" Margin="10" FontSize="24" FontAttributes="Bold" HorizontalTextAlignment="Center" />
             </StackLayout>
          </CollectionView.Header>
          

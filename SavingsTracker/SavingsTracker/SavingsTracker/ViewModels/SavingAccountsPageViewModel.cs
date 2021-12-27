@@ -1,14 +1,19 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
 using SavingsTracker.Models;
+using SavingsTracker.Resources;
 using SavingsTracker.Services;
 using SavingsTracker.Views;
+using Xamarin.CommunityToolkit.Helpers;
 using Xamarin.Forms;
 
 namespace SavingsTracker.ViewModels
 {
-   public class SavingAccountsPageViewModel : BaseViewModel
+   internal class SavingAccountsPageViewModel : BaseViewModel
    {
+      public LocalizedString NewAccount { get; } = new LocalizedString(() => AppResources.NewAccount);
+      public LocalizedString SavingAccountsHeader { get; } = new LocalizedString(() => AppResources.SavingAccounts);
+
       private ObservableCollection<SavingAccount> savingAccounts;
       public ObservableCollection<SavingAccount> SavingAccounts
       {
@@ -66,21 +71,23 @@ namespace SavingsTracker.ViewModels
 
          NewSavingAccountCommand = new Command(async () =>
          {
-            await Shell.Current.GoToAsync(nameof(NewSavingAccountPage), true);
+            await Shell.Current.GoToAsync($"{nameof(NewSavingAccountPage)}?NewSavingAccount=true", true);
          });
 
          DeleteSavingAccountCommand = new Command<SavingAccount>(async (account) =>
          {
-            await SavingAccountDBService.DeleteSavingAccountAsync(account);
+            string result = await Shell.Current.DisplayActionSheet(AppResources.DeleteQuestion, AppResources.No, AppResources.Yes);
+            if (result == AppResources.Yes)
+            {
+               await SavingAccountDBService.DeleteSavingAccountAsync(account);
 
-            (RefreshViewCommand as Command).Execute(null);
+               (RefreshViewCommand as Command).Execute(null);
+            }
          });
 
          EditSavingAccountCommand = new Command<SavingAccount>(async (account) =>
          {
-            //TODO: Implement EditSavingAccountCommand Command
-
-            (RefreshViewCommand as Command).Execute(null);
+            await Shell.Current.GoToAsync($"{nameof(NewSavingAccountPage)}?NewSavingAccount=false&SavingAccountId={account.AccountId}", true);
          });
       }
    }

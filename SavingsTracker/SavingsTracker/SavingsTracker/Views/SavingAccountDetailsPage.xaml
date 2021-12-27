@@ -4,25 +4,21 @@
              xmlns:vm="clr-namespace:SavingsTracker.ViewModels"
              xmlns:fontAwesome="clr-namespace:FontAwesome"
              xmlns:xct="clr-namespace:Xamarin.CommunityToolkit.UI.Views;assembly=Xamarin.CommunityToolkit"
+             xmlns:resource="clr-namespace:SavingsTracker.Resources"
              x:Name="SavingAccountDetailsPageName"
-             x:Class="SavingsTracker.Views.SavingAccountDetailsPage">
+             x:Class="SavingsTracker.Views.SavingAccountDetailsPage"
+             Title="{Binding SavingAccount.Name}">
 
    <ContentPage.BindingContext>
       <vm:SavingAccountDetailsPageViewModel />
    </ContentPage.BindingContext>
 
    <xct:TabView TabIndicatorColor="{StaticResource Primary}">
-      <xct:TabViewItem Text="Előzmények">
+      <xct:TabViewItem Text="{x:Static resource:AppResources.History}">
          <RefreshView IsRefreshing="{Binding IsRefreshBusy}" Command="{Binding RefreshViewCommand}">
             <CollectionView x:Name="ItemsListView"
                 ItemsSource="{Binding Balances}"
                 SelectionMode="None">
-
-               <CollectionView.Header>
-                  <StackLayout>
-                     <Label Text="{Binding SavingAccount.Name}" Margin="10" FontSize="24" FontAttributes="Bold" HorizontalTextAlignment="Center" />
-                  </StackLayout>
-               </CollectionView.Header>
 
                <CollectionView.ItemTemplate>
                   <DataTemplate>
@@ -95,7 +91,7 @@
          </RefreshView>
       </xct:TabViewItem>
 
-      <xct:TabViewItem Text="Grafikon">
+      <xct:TabViewItem Text="{x:Static resource:AppResources.Graph}">
          <Label Text="Ide jön majd a grafikon :)" HorizontalOptions="Center" Margin="20" />
       </xct:TabViewItem>
       

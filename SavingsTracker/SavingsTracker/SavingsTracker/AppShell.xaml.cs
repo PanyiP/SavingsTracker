@@ -1,4 +1,5 @@
-﻿using SavingsTracker.Views;
+﻿using SavingsTracker.ViewModels;
+using SavingsTracker.Views;
 using System;
 using Xamarin.Forms;
 
@@ -18,8 +19,5 @@ namespace SavingsTracker
       {
          await Current.GoToAsync("//LoginPage");
       }
-
-      //TODO: Make the APP multilingual
-      //TODO: Make it possible to have normal or dark theme
    }
 }

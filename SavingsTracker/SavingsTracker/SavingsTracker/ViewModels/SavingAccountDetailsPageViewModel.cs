@@ -1,4 +1,5 @@
 ﻿using SavingsTracker.Models;
+using SavingsTracker.Resources;
 using SavingsTracker.Services;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -54,6 +55,7 @@ namespace SavingsTracker.ViewModels
                Balances?.Clear();
                // Get the Balances of the current SavingAccount
                Balances = new ObservableCollection<Balance>(await SavingAccountDBService.GetBalancesAsync(SavingAccount));
+               // TODO: Order of Balances should be reversed
 
                IsRefreshBusy = false;
             },
@@ -63,10 +65,15 @@ namespace SavingsTracker.ViewModels
             }
          );
 
-         DeleteBalanceCommand = new Command(() =>
+         DeleteBalanceCommand = new Command(async (balance) =>
          {
-            //TODO: Implement DeleteBalanceCommand
-            (RefreshViewCommand as Command).Execute(null);
+            string result = await Shell.Current.DisplayActionSheet(AppResources.DeleteQuestion, AppResources.No, AppResources.Yes);
+            if (result == AppResources.Yes)
+            {
+               await SavingAccountDBService.DeleteBalanceAsync(balance as Balance);
+
+               (RefreshViewCommand as Command).Execute(null);
+            }
          });
 
          EditBalanceCommand = new Command(() =>

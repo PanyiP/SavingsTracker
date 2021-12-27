@@ -3,6 +3,7 @@
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:local="clr-namespace:SavingsTracker.Views"
        xmlns:fontAwesome="clr-namespace:FontAwesome"
+       xmlns:vm="clr-namespace:SavingsTracker.ViewModels"
        Title="SavingsTracker"
        x:Class="SavingsTracker.AppShell">
 
@@ -11,6 +12,10 @@
     
         https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/shell/
     -->
+
+   <Shell.BindingContext>
+      <vm:AppShellViewModel />
+   </Shell.BindingContext>
 
    <Shell.Resources>
       <ResourceDictionary>
@@ -74,6 +79,25 @@
             </Style.Triggers>
          </Style>
 
+         <Style TargetType="FlyoutItem" x:Key="OptionsFlyoutItem" >
+            <Style.Triggers>
+               <Trigger TargetType="FlyoutItem" Property="IsChecked" Value="True">
+                  <Setter Property="FlyoutIcon">
+                     <Setter.Value>
+                        <FontImageSource FontFamily="FAFS" Glyph="{x:Static fontAwesome:FontAwesomeIcons.Cog}" Color="White" />
+                     </Setter.Value>
+                  </Setter>
+               </Trigger>
+               <Trigger TargetType="FlyoutItem" Property="IsChecked" Value="False">
+                  <Setter Property="FlyoutIcon">
+                     <Setter.Value>
+                        <FontImageSource FontFamily="FAFS" Glyph="{x:Static fontAwesome:FontAwesomeIcons.Cog}" Color="{StaticResource Primary}" />
+                     </Setter.Value>
+                  </Setter>
+               </Trigger>
+            </Style.Triggers>
+         </Style>
+
          <!--
             Custom Style you can apply to any Flyout Item
             -->
@@ -93,13 +117,31 @@
       </ResourceDictionary>
    </Shell.Resources>
 
+   <Shell.FlyoutHeaderTemplate>
+      <DataTemplate>
+         <Grid BackgroundColor="Blue"
+               HeightRequest="100">
+            <Label Text="MP Savings Tracker"
+                   TextColor="White"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center" />
+         </Grid>
+      </DataTemplate>
+   </Shell.FlyoutHeaderTemplate>
+
    <!-- 
         When the Flyout is visible this defines the content to display in the flyout.
         FlyoutDisplayOptions="AsMultipleItems" will create a separate flyout item for each child element    
         https://docs.microsoft.com/dotnet/api/xamarin.forms.shellgroupitem.flyoutdisplayoptions?view=xamarin-forms
     -->
-   <FlyoutItem Title="Savings" Style="{StaticResource SavingAccountsFlyoutItem}">
+   <FlyoutItem Title="{Binding SavingAccounts.Localized, Mode=OneWay}" Style="{StaticResource SavingAccountsFlyoutItem}" >
       <ShellContent Route="SavingAccountssPage" ContentTemplate="{DataTemplate local:SavingAccountsPage}" />
+   </FlyoutItem>
+
+   <FlyoutItem Title="{Binding Options.Localized, Mode=OneWay}" Style="{StaticResource OptionsFlyoutItem}" >
+      <ShellContent Route="OptionsPage" ContentTemplate="{DataTemplate local:OptionsPage}" />
    </FlyoutItem>
 
    <!-- When the Flyout is visible this will be a menu item you can tie a click behavior to  -->
