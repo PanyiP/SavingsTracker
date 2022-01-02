@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using SavingsTracker.ViewModels;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace SavingsTracker.Views
@@ -9,6 +10,14 @@ namespace SavingsTracker.Views
       public SavingAccountDetailsPage()
       {
          InitializeComponent();
+      }
+
+      protected override void OnAppearing()
+      {
+         var vm = (SavingAccountDetailsPageViewModel)BindingContext;
+         vm.RefreshViewCommand.Execute(vm);
+
+         base.OnAppearing();
       }
    }
 }

@@ -61,6 +61,15 @@ namespace SavingsTracker.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Balance.
+        /// </summary>
+        internal static string Balance {
+            get {
+                return ResourceManager.GetString("Balance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         internal static string Cancel {
@@ -88,6 +97,15 @@ namespace SavingsTracker.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Date.
+        /// </summary>
+        internal static string Date {
+            get {
+                return ResourceManager.GetString("Date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Default.
         /// </summary>
         internal static string Default {
@@ -111,6 +129,15 @@ namespace SavingsTracker.Resources {
         internal static string DeleteQuestion {
             get {
                 return ResourceManager.GetString("DeleteQuestion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Balance.
+        /// </summary>
+        internal static string EditBalancePageTitle {
+            get {
+                return ResourceManager.GetString("EditBalancePageTitle", resourceCulture);
             }
         }
         
@@ -192,6 +219,15 @@ namespace SavingsTracker.Resources {
         internal static string NewAccount {
             get {
                 return ResourceManager.GetString("NewAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Balance.
+        /// </summary>
+        internal static string NewBalancePageTitle {
+            get {
+                return ResourceManager.GetString("NewBalancePageTitle", resourceCulture);
             }
         }
         

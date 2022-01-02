@@ -21,7 +21,7 @@
          
          <CollectionView.Header>
             <StackLayout>
-               <Label Text="{Binding SavingAccountsHeader.Localized}" Margin="10" FontSize="24" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+               <Label Text="{Binding SavingAccountsHeader.Localized}" Style="{StaticResource TitleLabel}" Margin="10" HorizontalTextAlignment="Center" />
             </StackLayout>
          </CollectionView.Header>
          

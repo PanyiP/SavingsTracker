@@ -117,8 +117,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AppShellFlyout1Name" xml:space="preserve">
-    <value />
+  <data name="Balance" xml:space="preserve">
+    <value>Egyenleg</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Mégse</value>
@@ -129,6 +129,9 @@
   <data name="DarkTheme" xml:space="preserve">
     <value>Sötét</value>
   </data>
+  <data name="Date" xml:space="preserve">
+    <value>Dátum</value>
+  </data>
   <data name="Default" xml:space="preserve">
     <value>Alapértelmezett</value>
   </data>
@@ -137,6 +140,9 @@
   </data>
   <data name="DeleteQuestion" xml:space="preserve">
     <value>Biztos benne hogy törölni akarja ezt az elemet?</value>
+  </data>
+  <data name="EditBalancePageTitle" xml:space="preserve">
+    <value>Egyenleg szerkesztése</value>
   </data>
   <data name="EditNewSavingAccountPageTitle" xml:space="preserve">
     <value>Számla szerkesztése</value>
@@ -163,7 +169,10 @@
     <value>Név</value>
   </data>
   <data name="NewAccount" xml:space="preserve">
-    <value>Új számla</value>
+    <value>Új Számla</value>
+  </data>
+  <data name="NewBalancePageTitle" xml:space="preserve">
+    <value>Új Egyenleg</value>
   </data>
   <data name="NewSavingAccountPageTitle" xml:space="preserve">
     <value>Új Megtakarítási számla</value>

@@ -26,27 +26,21 @@
             <ColumnDefinition Width="*" />
          </Grid.ColumnDefinitions>
 
-         <Label Text="{Binding LanguageOptionsTitle.Localized}" Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Start" FontSize="Title" FontAttributes="Bold" Margin="10,10,0,0" />
+         <Label Text="{Binding LanguageOptionsTitle.Localized}" Style="{StaticResource TitleLabel}" Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" Margin="10,10,0,0" />
          <RadioButton GroupName="Language" Grid.Row="1" Grid.Column="0" Content="{Binding Default.Localized}"
-                      IsChecked="{Binding IsDefaultLanguageChecked}" CheckedChanged="LanguageRadioButton_CheckedChanged" Value="defaultLanguage"
-                      Margin="20,10,0,0" VerticalOptions="Start" />
+                      IsChecked="{Binding IsDefaultLanguageChecked}" CheckedChanged="LanguageRadioButton_CheckedChanged" Value="defaultLanguage" />
          <RadioButton GroupName="Language" Grid.Row="2" Grid.Column="0" Content="{Binding EnglishLanguage.Localized}"
-                      IsChecked="{Binding IsENLanguageChecked}" CheckedChanged="LanguageRadioButton_CheckedChanged" Value="en"
-                      Margin="20,10,0,0" VerticalOptions="Start" />
+                      IsChecked="{Binding IsENLanguageChecked}" CheckedChanged="LanguageRadioButton_CheckedChanged" Value="en" />
          <RadioButton GroupName="Language" Grid.Row="3" Grid.Column="0" Content="{Binding HungarianLanguage.Localized}"
-                      IsChecked="{Binding IsHULanguageChecked}" CheckedChanged="LanguageRadioButton_CheckedChanged" Value="hu"
-                      Margin="20,10,0,0" VerticalOptions="Start" />
+                      IsChecked="{Binding IsHULanguageChecked}" CheckedChanged="LanguageRadioButton_CheckedChanged" Value="hu" />
 
-         <Label Text="{Binding ThemeOptionsTitle.Localized}" Grid.Row="4" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Start" FontSize="Title" FontAttributes="Bold" Margin="10,10,0,0" />
+         <Label Text="{Binding ThemeOptionsTitle.Localized}" Style="{StaticResource TitleLabel}" Grid.Row="4" Grid.Column="0" HorizontalOptions="Start" Margin="10,10,0,0" />
          <RadioButton GroupName="Theme" Grid.Row="5" Grid.Column="0" Content="{Binding Default.Localized}"
-                      CheckedChanged="ThemeRadioButton_CheckedChanged" Value="defaultTheme"
-                      Margin="20,10,0,0" VerticalOptions="Start" />
+                      CheckedChanged="ThemeRadioButton_CheckedChanged" Value="defaultTheme" />
          <RadioButton GroupName="Theme" Grid.Row="6" Grid.Column="0" Content="{Binding LightTheme.Localized}"
-                      CheckedChanged="ThemeRadioButton_CheckedChanged" Value="light"
-                      Margin="20,10,0,0" VerticalOptions="Start" />
+                      CheckedChanged="ThemeRadioButton_CheckedChanged" Value="light" />
          <RadioButton GroupName="Theme" Grid.Row="7" Grid.Column="0" Content="{Binding DarkTheme.Localized}"
-                      CheckedChanged="ThemeRadioButton_CheckedChanged" Value="dark"
-                      Margin="20,10,0,0" VerticalOptions="Start" />
+                      CheckedChanged="ThemeRadioButton_CheckedChanged" Value="dark" />
       </Grid>
    </ContentPage.Content>
 </ContentPage>

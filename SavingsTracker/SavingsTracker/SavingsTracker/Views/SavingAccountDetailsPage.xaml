@@ -13,12 +13,23 @@
       <vm:SavingAccountDetailsPageViewModel />
    </ContentPage.BindingContext>
 
+   <ContentPage.ToolbarItems>
+      <ToolbarItem Text="{Binding NewBalance.Localized}" Command="{Binding NewBalanceCommand}" />
+   </ContentPage.ToolbarItems>
+
    <xct:TabView TabIndicatorColor="{StaticResource Primary}">
       <xct:TabViewItem Text="{x:Static resource:AppResources.History}">
          <RefreshView IsRefreshing="{Binding IsRefreshBusy}" Command="{Binding RefreshViewCommand}">
             <CollectionView x:Name="ItemsListView"
                 ItemsSource="{Binding Balances}"
                 SelectionMode="None">
+
+               <CollectionView.Header>
+                  <StackLayout Orientation="Horizontal">
+                     <Label Text="{Binding SavingAccount.CurrentBalance.Value}" Style="{StaticResource TitleLabel}" HorizontalOptions="EndAndExpand" Margin="10" />
+                     <Label Text="{Binding SavingAccount.Currency}" Style="{StaticResource TitleLabel}" HorizontalOptions="StartAndExpand" Margin="0,10,10,10" />
+                  </StackLayout>
+               </CollectionView.Header>
 
                <CollectionView.ItemTemplate>
                   <DataTemplate>
@@ -66,22 +77,22 @@
 
                            <!-- Grid.Row = 0 -->
                            <Label Text="{Binding Value}" Grid.Row="0" Grid.Column="0"
-                            Margin="20,0,0,0"
-                            LineBreakMode="NoWrap"
-                            FontSize="16"
-                            FontAttributes="Bold" />
+                                  Margin="20,0,0,0"
+                                  LineBreakMode="NoWrap"
+                                  FontSize="16"
+                                  FontAttributes="Bold" />
                            <Label Text="{Binding BindingContext.SavingAccount.Currency, Source={x:Reference SavingAccountDetailsPageName}}" Grid.Row="0" Grid.Column="1"
-                            LineBreakMode="NoWrap"
-                            FontSize="16" />
+                                  LineBreakMode="NoWrap"
+                                  FontSize="16" />
                            <Label Text="{Binding DateTime}" Grid.Row="0" Grid.Column="2"
-                            LineBreakMode="WordWrap"
-                            FontSize="16"
-                            HorizontalTextAlignment="End"
-                            Margin="0,0,20,0"/>
+                                  LineBreakMode="WordWrap"
+                                  FontSize="16"
+                                  HorizontalTextAlignment="End"
+                                  Margin="0,0,20,0"/>
                            <!-- Grid.Row = 1 -->
                            <Line Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"
-                           HeightRequest="1"
-                           BackgroundColor="Black"/>
+                                 HeightRequest="1"
+                                 BackgroundColor="Black"/>
 
                         </Grid>
                      </SwipeView>

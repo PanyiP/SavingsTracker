@@ -1,16 +1,21 @@
 ﻿using SavingsTracker.Models;
 using SavingsTracker.Resources;
 using SavingsTracker.Services;
+using SavingsTracker.Views;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Web;
 using System.Windows.Input;
+using Xamarin.CommunityToolkit.Helpers;
 using Xamarin.Forms;
 
 namespace SavingsTracker.ViewModels
 {
    internal class SavingAccountDetailsPageViewModel : BaseViewModel, IQueryAttributable
-   {
+   {//TODO: Instead of header menu new item, add bottom pluss button to add new Balance
+      public LocalizedString NewBalance { get; } = new LocalizedString(() => AppResources.NewBalancePageTitle);
+
       private string savingAccountId;
 
       private SavingAccount savingAccount;
@@ -41,6 +46,7 @@ namespace SavingsTracker.ViewModels
       public ICommand RefreshViewCommand { get; }
       public ICommand DeleteBalanceCommand { get; }
       public ICommand EditBalanceCommand { get; }
+      public ICommand NewBalanceCommand { get; }
 
       public SavingAccountDetailsPageViewModel()
       {
@@ -51,11 +57,12 @@ namespace SavingsTracker.ViewModels
 
                // Get the SavingAccount from the database
                SavingAccount = await SavingAccountDBService.GetSavingAccountAsync(savingAccountId);
+               SavingAccount.CurrentBalance = await SavingAccountDBService.GetLatestBalanceAsync(SavingAccount);
                // Clear the Balances ObservableCollection
                Balances?.Clear();
                // Get the Balances of the current SavingAccount
-               Balances = new ObservableCollection<Balance>(await SavingAccountDBService.GetBalancesAsync(SavingAccount));
-               // TODO: Order of Balances should be reversed
+               var temp = await SavingAccountDBService.GetBalancesAsync(SavingAccount);
+               Balances = new ObservableCollection<Balance>(temp.OrderByDescending(item => item.DateTime));
 
                IsRefreshBusy = false;
             },
@@ -65,21 +72,25 @@ namespace SavingsTracker.ViewModels
             }
          );
 
-         DeleteBalanceCommand = new Command(async (balance) =>
+         DeleteBalanceCommand = new Command<Balance>(async (balance) =>
          {
             string result = await Shell.Current.DisplayActionSheet(AppResources.DeleteQuestion, AppResources.No, AppResources.Yes);
             if (result == AppResources.Yes)
             {
-               await SavingAccountDBService.DeleteBalanceAsync(balance as Balance);
+               await SavingAccountDBService.DeleteBalanceAsync(balance);
 
                (RefreshViewCommand as Command).Execute(null);
             }
          });
 
-         EditBalanceCommand = new Command(() =>
+         EditBalanceCommand = new Command<Balance>(async (balance) =>
          {
-            //TODO: Implement EditBalanceCommand
-            (RefreshViewCommand as Command).Execute(null);
+            await Shell.Current.GoToAsync($"{nameof(NewBalancePage)}?NewBalance=false&BalanceId={balance.BalanceId}", true);
+         });
+
+         NewBalanceCommand = new Command(async () =>
+         {
+            await Shell.Current.GoToAsync($"{nameof(NewBalancePage)}?NewBalance=true&AccountId={SavingAccount.AccountId}", true);
          });
       }
 

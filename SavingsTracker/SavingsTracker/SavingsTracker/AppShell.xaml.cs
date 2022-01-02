@@ -13,6 +13,7 @@ namespace SavingsTracker
 
          Routing.RegisterRoute(nameof(SavingAccountDetailsPage), typeof(SavingAccountDetailsPage));
          Routing.RegisterRoute(nameof(NewSavingAccountPage), typeof(NewSavingAccountPage));
+         Routing.RegisterRoute(nameof(NewBalancePage), typeof(NewBalancePage));
       }
 
       private async void OnMenuItemClicked(object sender, EventArgs e)

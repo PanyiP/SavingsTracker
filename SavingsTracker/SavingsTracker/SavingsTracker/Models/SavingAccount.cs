@@ -89,7 +89,16 @@ namespace SavingsTracker.Models
       #endregion
 
       #region Constructor
-      public Balance() { }
+      public Balance()
+      {
+         BalanceId = Guid.NewGuid().ToString();
+      }
+
+      public Balance(string accountID)
+      {
+         BalanceId = Guid.NewGuid().ToString();
+         AccountId = accountID;
+      }
 
       public Balance(string accountID, DateTime datetime, Double value)
       {

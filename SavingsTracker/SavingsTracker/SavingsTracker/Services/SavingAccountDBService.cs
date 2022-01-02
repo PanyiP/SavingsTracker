@@ -121,7 +121,7 @@ namespace SavingsTracker.Services
          Balance return_value = new Balance();
          if (balances.Count > 0)
          {
-            return_value.DateTime = new DateTime(1900, 1, 1);
+            return_value.DateTime = new DateTime(1, 1, 1);
             foreach (var balance in balances)
             {
                if (balance.DateTime > return_value.DateTime)
@@ -138,6 +138,13 @@ namespace SavingsTracker.Services
 
 
          return return_value;
+      }
+
+      public static async Task<Balance> GetBalanceAsync(string id)
+      {
+         await Init();
+
+         return await db.Table<Balance>().Where(balance => balance.BalanceId == id).FirstAsync();
       }
 
       public static async Task<bool> UpdateBalanceAsync(Balance balance)
