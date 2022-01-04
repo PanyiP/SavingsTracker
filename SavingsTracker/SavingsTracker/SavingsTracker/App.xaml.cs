@@ -8,7 +8,6 @@ namespace SavingsTracker
 {
    public partial class App : Application
    {
-
       public App()
       {
          // I have implemented localization three different ways:

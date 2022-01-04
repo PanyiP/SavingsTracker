@@ -138,6 +138,9 @@
   <data name="Delete" xml:space="preserve">
     <value>Törlés</value>
   </data>
+  <data name="DeleteDbOptionsTitle" xml:space="preserve">
+    <value>Összes számla adat törlése</value>
+  </data>
   <data name="DeleteQuestion" xml:space="preserve">
     <value>Biztos benne hogy törölni akarja ezt az elemet?</value>
   </data>

@@ -12,7 +12,8 @@
    <ContentPage.Content>
       <StackLayout>
          <Entry IsPassword="False" Text="{Binding Balance.Value}" Keyboard="Numeric" Placeholder="{x:Static resource:AppResources.Balance}" Margin="10" />
-         <Entry IsPassword="False" Text="{Binding Balance.DateTime}" Placeholder="{x:Static resource:AppResources.Date}" Margin="10" />
+         <DatePicker Date="{Binding Balance.DateTime}" Margin="10" />
+         <TimePicker Time="{Binding Balance.DateTime}" Margin="10" />
          <Button Text="{x:Static resource:AppResources.Save}" Command="{Binding SaveCommand}" Margin="10" />
       </StackLayout>
    </ContentPage.Content>

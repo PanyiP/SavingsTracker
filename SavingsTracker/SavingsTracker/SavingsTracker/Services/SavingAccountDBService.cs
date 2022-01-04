@@ -22,10 +22,20 @@ namespace SavingsTracker.Services
          var databasePath = Path.Combine(FileSystem.AppDataDirectory, "MyData.db");
 
          db = new SQLiteAsyncConnection(databasePath);
-         //await db.DropTableAsync<SavingAccount>();
-         //await db.DropTableAsync<Balance>();
          await db.CreateTableAsync<SavingAccount>();
          await db.CreateTableAsync<Balance>();
+      }
+
+      public static async Task<bool> DeleteAllTablesAsync()
+      {
+         await Init();
+
+         bool ret_val = true;
+
+         ret_val &= (await db.DropTableAsync<SavingAccount>() > 0);
+         ret_val &= (await db.DropTableAsync<Balance>() > 0);
+
+         return ret_val;
       }
 
       #region SavingAccount table functions

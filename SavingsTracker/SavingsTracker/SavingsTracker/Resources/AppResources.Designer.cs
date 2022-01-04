@@ -124,6 +124,15 @@ namespace SavingsTracker.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete all account data.
+        /// </summary>
+        internal static string DeleteDbOptionsTitle {
+            get {
+                return ResourceManager.GetString("DeleteDbOptionsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure you want to delete this item?.
         /// </summary>
         internal static string DeleteQuestion {

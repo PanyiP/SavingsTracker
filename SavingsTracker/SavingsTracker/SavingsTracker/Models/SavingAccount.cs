@@ -74,10 +74,23 @@ namespace SavingsTracker.Models
       }
 
       private DateTime dateTime;
+      /// <summary>
+      /// To store the Date portion in SQLite db and to represent the whole Date and Time
+      /// </summary>
       public DateTime DateTime
       {
          get { return dateTime; }
          set { SetProperty(ref dateTime, value); }
+      }
+
+      private long timeOfDayInTicks;
+      /// <summary>
+      /// To have TimeOfDay stored in ticks, so it can be saved into SQLite db. TimeSpan cannot be saved into SQLite.
+      /// </summary>
+      public long TimeOfDayInTicks
+      {
+         get { return timeOfDayInTicks; }
+         set { timeOfDayInTicks = value; }
       }
 
       private Double _value;

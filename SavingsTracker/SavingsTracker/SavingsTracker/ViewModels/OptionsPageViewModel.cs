@@ -1,4 +1,5 @@
 ﻿using SavingsTracker.Resources;
+using SavingsTracker.Services;
 using System.Globalization;
 using System.Windows.Input;
 using Xamarin.CommunityToolkit.Helpers;
@@ -17,6 +18,8 @@ namespace SavingsTracker.ViewModels
       public LocalizedString ThemeOptionsTitle { get; } = new LocalizedString(() => AppResources.ThemeOptionsTitle);
       public LocalizedString LightTheme { get; } = new LocalizedString(() => AppResources.LightTheme);
       public LocalizedString DarkTheme { get; } = new LocalizedString(() => AppResources.DarkTheme);
+      public LocalizedString DeleteDbOptionsTitle { get; } = new LocalizedString(() => AppResources.DeleteDbOptionsTitle);
+      public LocalizedString Delete { get; } = new LocalizedString(() => AppResources.Delete);
 
       private bool isDefaultLanguageChecked;
       public bool IsDefaultLanguageChecked
@@ -41,6 +44,7 @@ namespace SavingsTracker.ViewModels
 
       public ICommand ChangeLanguageCommand { get; }
       public ICommand ChangeThemeCommand { get; }
+      public ICommand DeleteAllDataCommand { get; }
 
       public OptionsPageViewModel()
       {
@@ -87,6 +91,11 @@ namespace SavingsTracker.ViewModels
          ChangeThemeCommand = new Command(() =>
          {
             //TODO: Make it possible to have normal or dark theme
+         });
+
+         DeleteAllDataCommand = new Command(async () =>
+         {
+            await SavingAccountDBService.DeleteAllTablesAsync();
          });
       }
    }

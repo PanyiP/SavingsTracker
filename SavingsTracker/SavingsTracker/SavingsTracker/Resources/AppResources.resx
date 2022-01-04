@@ -138,6 +138,9 @@
   <data name="Delete" xml:space="preserve">
     <value>Delete</value>
   </data>
+  <data name="DeleteDbOptionsTitle" xml:space="preserve">
+    <value>Delete all account data</value>
+  </data>
   <data name="DeleteQuestion" xml:space="preserve">
     <value>Are you sure you want to delete this item?</value>
   </data>

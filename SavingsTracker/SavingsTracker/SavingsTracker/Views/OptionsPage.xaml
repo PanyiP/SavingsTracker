@@ -19,6 +19,8 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
          </Grid.RowDefinitions>
 
@@ -41,6 +43,9 @@
                       CheckedChanged="ThemeRadioButton_CheckedChanged" Value="light" />
          <RadioButton GroupName="Theme" Grid.Row="7" Grid.Column="0" Content="{Binding DarkTheme.Localized}"
                       CheckedChanged="ThemeRadioButton_CheckedChanged" Value="dark" />
+
+         <Label Text="{Binding DeleteDbOptionsTitle.Localized}" Style="{StaticResource TitleLabel}" Grid.Row="8" Grid.Column="0" HorizontalOptions="Start" Margin="10,10,0,0" />
+         <Button Text="{Binding Delete.Localized}" Command="{Binding DeleteAllDataCommand}"  Grid.Row="9" Grid.Column="0" Margin="20,10,0,0" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" />
       </Grid>
    </ContentPage.Content>
 </ContentPage>

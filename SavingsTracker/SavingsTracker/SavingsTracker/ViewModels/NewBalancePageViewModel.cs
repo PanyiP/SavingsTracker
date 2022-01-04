@@ -1,5 +1,6 @@
 ﻿using SavingsTracker.Models;
 using SavingsTracker.Services;
+using System;
 using System.Collections.Generic;
 using System.Web;
 using System.Windows.Input;
@@ -8,7 +9,7 @@ using Xamarin.Forms;
 namespace SavingsTracker.ViewModels
 {
    internal class NewBalancePageViewModel : BaseViewModel, IQueryAttributable
-   {
+   {//TODO: Implement binding of TimePicker. It should be bound to a TimeSpan object, but TimeSpan object cannot be saved into SQLite db.
       private string title;
       public string Title
       {
@@ -67,6 +68,8 @@ namespace SavingsTracker.ViewModels
             Title = Resources.AppResources.NewBalancePageTitle;
 
             Balance.AccountId = HttpUtility.UrlDecode(query["AccountId"]);
+            Balance.DateTime = DateTime.Now;
+            Balance.Value = 0.0;
          }
          else
          {

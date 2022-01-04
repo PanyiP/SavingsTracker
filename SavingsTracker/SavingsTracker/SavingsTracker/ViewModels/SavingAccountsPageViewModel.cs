@@ -10,7 +10,7 @@ using Xamarin.Forms;
 namespace SavingsTracker.ViewModels
 {
    internal class SavingAccountsPageViewModel : BaseViewModel
-   {//TODO: Instead of header menu new item, add bottom pluss button to add new SavingAccount
+   {
       public LocalizedString NewAccount { get; } = new LocalizedString(() => AppResources.NewAccount);
       public LocalizedString SavingAccountsHeader { get; } = new LocalizedString(() => AppResources.SavingAccounts);
 
