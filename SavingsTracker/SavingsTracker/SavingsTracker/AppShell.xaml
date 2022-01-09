@@ -5,7 +5,8 @@
        xmlns:fontAwesome="clr-namespace:FontAwesome"
        xmlns:vm="clr-namespace:SavingsTracker.ViewModels"
        Title="SavingsTracker"
-       x:Class="SavingsTracker.AppShell">
+       x:Class="SavingsTracker.AppShell"
+       FlyoutBackgroundColor="{AppThemeBinding Light={StaticResource LightThemeBackground}, Dark={StaticResource DarkThemeBackground}}">
 
    <!--
         The overall app visual hierarchy is defined here, along with navigation.
@@ -20,15 +21,14 @@
    <Shell.Resources>
       <ResourceDictionary>
          <Style x:Key="BaseStyle" TargetType="Element">
-            <Setter Property="Shell.BackgroundColor" Value="{StaticResource Primary}" />
-            <Setter Property="Shell.ForegroundColor" Value="White" />
-            <Setter Property="Shell.TitleColor" Value="White" />
-            <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
-            <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
-            <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource Primary}" />
-            <Setter Property="Shell.TabBarForegroundColor" Value="White"/>
-            <Setter Property="Shell.TabBarUnselectedColor" Value="#95FFFFFF"/>
-            <Setter Property="Shell.TabBarTitleColor" Value="White"/>
+            <Setter Property="Shell.BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightThemeSurface}, Dark={StaticResource DarkThemeSurface}}" />
+            <Setter Property="Shell.ForegroundColor" Value="{AppThemeBinding Light={StaticResource LightThemeOnSurface}, Dark={StaticResource DarkThemeOnSurface}}" />
+            <Setter Property="Shell.TitleColor" Value="{AppThemeBinding Light={StaticResource LightThemeOnSurface}, Dark={StaticResource DarkThemeOnSurface}}" />
+            <Setter Property="Shell.UnselectedColor" Value="{AppThemeBinding Light={StaticResource LightThemeBackground}, Dark={StaticResource DarkThemeBackground}}" />
+            <Setter Property="Shell.TabBarBackgroundColor" Value="{AppThemeBinding Light={StaticResource LightThemeSurface}, Dark={StaticResource DarkThemeSurface}}" />
+            <Setter Property="Shell.TabBarForegroundColor" Value="{AppThemeBinding Light={StaticResource LightThemeOnSurface}, Dark={StaticResource DarkThemeOnSurface}}"/>
+            <Setter Property="Shell.TabBarUnselectedColor" Value="{AppThemeBinding Light={StaticResource LightThemeBackground}, Dark={StaticResource DarkThemeBackground}}"/>
+            <Setter Property="Shell.TabBarTitleColor" Value="{AppThemeBinding Light={StaticResource LightThemeOnBackground}, Dark={StaticResource DarkThemeOnBackground}}"/>
          </Style>
          <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />
          <Style TargetType="FlyoutItem" BasedOn="{StaticResource BaseStyle}" />
@@ -37,42 +37,47 @@
             Default Styles for all Flyout Items
             https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/shell/flyout#flyoutitem-and-menuitem-style-classes
             -->
-         <Style Class="FlyoutItemLabelStyle" TargetType="Label">
-            <Setter Property="TextColor" Value="White"></Setter>
-         </Style>
+         
          <Style Class="FlyoutItemLayoutStyle" TargetType="Layout" ApplyToDerivedTypes="True">
             <Setter Property="VisualStateManager.VisualStateGroups">
                <VisualStateGroupList>
                   <VisualStateGroup x:Name="CommonStates">
                      <VisualState x:Name="Normal">
                         <VisualState.Setters>
-                           <Setter Property="BackgroundColor" Value="{x:OnPlatform UWP=Transparent, iOS=White}" />
-                           <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="{StaticResource Primary}" />
+                           <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor"
+                                   Value="{AppThemeBinding Light={StaticResource LightThemeOnBackground}, Dark={StaticResource DarkThemeOnBackground}}" />
+                           <Setter Property="BackgroundColor"
+                                   Value="{AppThemeBinding Light={StaticResource LightThemeBackground}, Dark={StaticResource DarkThemeBackground}}" />
                         </VisualState.Setters>
                      </VisualState>
                      <VisualState x:Name="Selected">
                         <VisualState.Setters>
-                           <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
+                           <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor"
+                                   Value="{AppThemeBinding Light={StaticResource LightThemeOnSurface}, Dark={StaticResource DarkThemeOnSurface}}" />
+                           <Setter Property="BackgroundColor"
+                                   Value="{AppThemeBinding Light={StaticResource LightThemeSurface}, Dark={StaticResource DarkThemeSurface}}" />
                         </VisualState.Setters>
                      </VisualState>
                   </VisualStateGroup>
                </VisualStateGroupList>
             </Setter>
-         </Style>
+         </Style> 
 
          <Style TargetType="FlyoutItem" x:Key="SavingAccountsFlyoutItem" >
             <Style.Triggers>
                <Trigger TargetType="FlyoutItem" Property="IsChecked" Value="True">
                   <Setter Property="FlyoutIcon">
                      <Setter.Value>
-                        <FontImageSource FontFamily="FAFS" Glyph="{x:Static fontAwesome:FontAwesomeIcons.ChartLine}" Color="White" />
+                        <FontImageSource FontFamily="FAFS" Glyph="{x:Static fontAwesome:FontAwesomeIcons.ChartLine}"
+                                         Color="{AppThemeBinding Light={StaticResource LightThemeOnSurface}, Dark={StaticResource DarkThemeOnSurface}}" />
                      </Setter.Value>
                   </Setter>
                </Trigger>
                <Trigger TargetType="FlyoutItem" Property="IsChecked" Value="False">
                   <Setter Property="FlyoutIcon">
                      <Setter.Value>
-                        <FontImageSource FontFamily="FAFS" Glyph="{x:Static fontAwesome:FontAwesomeIcons.ChartLine}" Color="{StaticResource Primary}" />
+                        <FontImageSource FontFamily="FAFS" Glyph="{x:Static fontAwesome:FontAwesomeIcons.ChartLine}"
+                                         Color="{AppThemeBinding Light={StaticResource LightThemeOnBackground}, Dark={StaticResource DarkThemeOnBackground}}" />
                      </Setter.Value>
                   </Setter>
                </Trigger>
@@ -84,14 +89,16 @@
                <Trigger TargetType="FlyoutItem" Property="IsChecked" Value="True">
                   <Setter Property="FlyoutIcon">
                      <Setter.Value>
-                        <FontImageSource FontFamily="FAFS" Glyph="{x:Static fontAwesome:FontAwesomeIcons.Cog}" Color="White" />
+                        <FontImageSource FontFamily="FAFS" Glyph="{x:Static fontAwesome:FontAwesomeIcons.Cog}"
+                                         Color="{AppThemeBinding Light={StaticResource LightThemeOnSurface}, Dark={StaticResource DarkThemeOnSurface}}" />
                      </Setter.Value>
                   </Setter>
                </Trigger>
                <Trigger TargetType="FlyoutItem" Property="IsChecked" Value="False">
                   <Setter Property="FlyoutIcon">
                      <Setter.Value>
-                        <FontImageSource FontFamily="FAFS" Glyph="{x:Static fontAwesome:FontAwesomeIcons.Cog}" Color="{StaticResource Primary}" />
+                        <FontImageSource FontFamily="FAFS" Glyph="{x:Static fontAwesome:FontAwesomeIcons.Cog}"
+                                         Color="{AppThemeBinding Light={StaticResource LightThemeOnBackground}, Dark={StaticResource DarkThemeOnBackground}}" />
                      </Setter.Value>
                   </Setter>
                </Trigger>
@@ -107,7 +114,8 @@
                   <VisualStateGroup x:Name="CommonStates">
                      <VisualState x:Name="Normal">
                         <VisualState.Setters>
-                           <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="{StaticResource Primary}" />
+                           <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor"
+                                   Value="{AppThemeBinding Light={StaticResource LightThemeOnBackground}, Dark={StaticResource DarkThemeOnBackground}}" />
                         </VisualState.Setters>
                      </VisualState>
                   </VisualStateGroup>
@@ -119,10 +127,10 @@
 
    <Shell.FlyoutHeaderTemplate>
       <DataTemplate>
-         <Grid BackgroundColor="Blue"
+         <Grid BackgroundColor="{AppThemeBinding Light={StaticResource LightThemePrimaryVariant}, Dark={StaticResource DarkThemePrimaryVariant}}"
                HeightRequest="100">
             <Label Text="MP Savings Tracker"
-                   TextColor="White"
+                   TextColor="{AppThemeBinding Light={StaticResource LightThemeOnPrimaryVariant}, Dark={StaticResource DarkThemeOnPrimaryVariant}}"
                    FontSize="20"
                    FontAttributes="Bold"
                    HorizontalTextAlignment="Center"

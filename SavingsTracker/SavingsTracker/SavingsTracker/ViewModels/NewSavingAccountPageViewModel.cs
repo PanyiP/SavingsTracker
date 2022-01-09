@@ -8,7 +8,7 @@ using Xamarin.Forms;
 namespace SavingsTracker.ViewModels
 {
    internal class NewSavingAccountPageViewModel : BaseViewModel, IQueryAttributable
-   {//TODO: Entry color should be changed to default blue instead of pink
+   {//TODO: Theme: Entry color should be changed based on the Theme
       private string title;
       public string Title
       {

@@ -5,6 +5,7 @@
              xmlns:resource="clr-namespace:SavingsTracker.Resources"
              x:Class="SavingsTracker.Views.NewSavingAccountPage"
              x:Name="SavingsPageName"
+             Style="{StaticResource PageBackground}"
              Title="{Binding Title}">
 
    <ContentPage.BindingContext>
@@ -13,9 +14,9 @@
 
    <ContentPage.Content>
       <StackLayout>
-         <Entry IsPassword="False" Text="{Binding SavingAccount.Name}" Placeholder="{x:Static resource:AppResources.Name}" Margin="10" />
-         <Entry IsPassword="False" Text="{Binding SavingAccount.Currency}" Placeholder="{x:Static resource:AppResources.Currency}" Margin="10" />
-         <Button Text="{x:Static resource:AppResources.Save}" Command="{Binding SaveCommand}" Margin="10" />
+         <Entry Text="{Binding SavingAccount.Name}" Placeholder="{x:Static resource:AppResources.Name}"  />
+         <Entry Text="{Binding SavingAccount.Currency}" Placeholder="{x:Static resource:AppResources.Currency}" />
+         <Button Text="{x:Static resource:AppResources.Save}" Command="{Binding SaveCommand}" Style="{StaticResource BaseButton}" />
       </StackLayout>
    </ContentPage.Content>
 </ContentPage>

@@ -1,15 +1,15 @@
 ﻿using SavingsTracker.Resources;
 using SavingsTracker.Services;
-using System.Globalization;
 using System.Windows.Input;
 using Xamarin.CommunityToolkit.Helpers;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace SavingsTracker.ViewModels
 {
    internal class OptionsPageViewModel : BaseViewModel
-   {//TODO: Radio button color should be changed to default blue instead of pink
+   {//TODO: Theme: Radio button color should be changed based on the Theme
+      //TODO: Theme: Radio button underlining should change color according to the theme.
+      //TODO: Theme: Changing the theme is sometimes crashes the App.
       public LocalizedString Title { get; } = new LocalizedString(() => AppResources.Options);
       public LocalizedString LanguageOptionsTitle { get; } = new LocalizedString(() => AppResources.LanguageOptionsTitle);
       public LocalizedString Default { get; } = new LocalizedString(() => AppResources.Default);
@@ -42,24 +42,57 @@ namespace SavingsTracker.ViewModels
          set { SetProperty(ref isENLanguageChecked, value); }
       }
 
+      private bool isDefaultThemeChecked;
+      public bool IsDefaultThemeChecked
+      {
+         get { return isDefaultThemeChecked; }
+         set { SetProperty(ref isDefaultThemeChecked, value); }
+      }
+
+      private bool isLightThemeChecked;
+      public bool IsLightThemeChecked
+      {
+         get { return isLightThemeChecked; }
+         set { SetProperty(ref isLightThemeChecked, value); }
+      }
+
+      private bool isDarkThemeChecked;
+      public bool IsDarkThemeChecked
+      {
+         get { return isDarkThemeChecked; }
+         set { SetProperty(ref isDarkThemeChecked, value); }
+      }
+
       public ICommand ChangeLanguageCommand { get; }
       public ICommand ChangeThemeCommand { get; }
       public ICommand DeleteAllDataCommand { get; }
 
       public OptionsPageViewModel()
       {
-         string culture = Preferences.Get("Culture", "defaultLanguage");
-         if (culture == "defaultLanguage")
+         if (Settings.Culture == Settings.defaultLanguage)
          {
             IsDefaultLanguageChecked = true;
          }
-         else if (culture == "en")
+         else if (Settings.Culture == Settings.english)
          {
             IsENLanguageChecked = true;
          }
-         else if (culture == "hu")
+         else if (Settings.Culture == Settings.hungarian)
          {
             IsHULanguageChecked = true;
+         }
+
+         if (Settings.Theme == Settings.defaultTheme)
+         {
+            IsDefaultThemeChecked = true;
+         }
+         else if (Settings.Theme == Settings.light)
+         {
+            IsLightThemeChecked = true;
+         }
+         else if (Settings.Theme == Settings.dark)
+         {
+            IsDarkThemeChecked = true;
          }
 
          ChangeLanguageCommand = new Command(() =>
@@ -67,30 +100,33 @@ namespace SavingsTracker.ViewModels
             // Changing the language has code part in App.xaml.cs as well
             if (IsDefaultLanguageChecked)
             {
-               LocalizationResourceManager.Current.CurrentCulture = CultureInfo.InstalledUICulture;
-               Preferences.Set("Culture", "defaultLanguage");
+               Settings.Culture = Settings.defaultLanguage;
             }
             else if (IsENLanguageChecked)
             {
-               CultureInfo language = new CultureInfo("en");
-               LocalizationResourceManager.Current.CurrentCulture = language;
-               Preferences.Set("Culture", language.Name);
-
-               IsENLanguageChecked = true;
+               Settings.Culture = Settings.english;
             }
             else if (IsHULanguageChecked)
             {
-               CultureInfo language = new CultureInfo("hu");
-               LocalizationResourceManager.Current.CurrentCulture = language;
-               Preferences.Set("Culture", language.Name);
-
-               IsHULanguageChecked = true;
+               Settings.Culture = Settings.hungarian;
             }
          });
 
          ChangeThemeCommand = new Command(() =>
          {
-            //TODO: Make it possible to have normal or dark theme
+            // Changing the theme has code part in App.xaml.cs as well
+            if (IsDefaultThemeChecked)
+            {
+               Settings.Theme = Settings.defaultTheme;
+            }
+            else if (IsLightThemeChecked)
+            {
+               Settings.Theme = Settings.light;
+            }
+            else if (IsDarkThemeChecked)
+            {
+               Settings.Theme = Settings.dark;
+            }
          });
 
          DeleteAllDataCommand = new Command(async () =>

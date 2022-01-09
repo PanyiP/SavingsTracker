@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:SavingsTracker.ViewModels"
              x:Class="SavingsTracker.Views.OptionsPage"
+             BackgroundColor="{AppThemeBinding Light={StaticResource LightThemeBackground}, Dark={StaticResource DarkThemeBackground}}"
              Title="{Binding Title.Localized}">
 
    <ContentPage.BindingContext>
@@ -29,23 +30,23 @@
          </Grid.ColumnDefinitions>
 
          <Label Text="{Binding LanguageOptionsTitle.Localized}" Style="{StaticResource TitleLabel}" Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" Margin="10,10,0,0" />
-         <RadioButton GroupName="Language" Grid.Row="1" Grid.Column="0" Content="{Binding Default.Localized}"
+         <RadioButton GroupName="Language" Grid.Row="1" Grid.Column="0" Content="{Binding Default.Localized}" Style="{StaticResource BaseLabel}"
                       IsChecked="{Binding IsDefaultLanguageChecked}" CheckedChanged="LanguageRadioButton_CheckedChanged" Value="defaultLanguage" />
-         <RadioButton GroupName="Language" Grid.Row="2" Grid.Column="0" Content="{Binding EnglishLanguage.Localized}"
+         <RadioButton GroupName="Language" Grid.Row="2" Grid.Column="0" Content="{Binding EnglishLanguage.Localized}" Style="{StaticResource BaseLabel}"
                       IsChecked="{Binding IsENLanguageChecked}" CheckedChanged="LanguageRadioButton_CheckedChanged" Value="en" />
-         <RadioButton GroupName="Language" Grid.Row="3" Grid.Column="0" Content="{Binding HungarianLanguage.Localized}"
+         <RadioButton GroupName="Language" Grid.Row="3" Grid.Column="0" Content="{Binding HungarianLanguage.Localized}" Style="{StaticResource BaseLabel}"
                       IsChecked="{Binding IsHULanguageChecked}" CheckedChanged="LanguageRadioButton_CheckedChanged" Value="hu" />
 
          <Label Text="{Binding ThemeOptionsTitle.Localized}" Style="{StaticResource TitleLabel}" Grid.Row="4" Grid.Column="0" HorizontalOptions="Start" Margin="10,10,0,0" />
-         <RadioButton GroupName="Theme" Grid.Row="5" Grid.Column="0" Content="{Binding Default.Localized}"
-                      CheckedChanged="ThemeRadioButton_CheckedChanged" Value="defaultTheme" />
-         <RadioButton GroupName="Theme" Grid.Row="6" Grid.Column="0" Content="{Binding LightTheme.Localized}"
-                      CheckedChanged="ThemeRadioButton_CheckedChanged" Value="light" />
-         <RadioButton GroupName="Theme" Grid.Row="7" Grid.Column="0" Content="{Binding DarkTheme.Localized}"
-                      CheckedChanged="ThemeRadioButton_CheckedChanged" Value="dark" />
+         <RadioButton GroupName="Theme" Grid.Row="5" Grid.Column="0" Content="{Binding Default.Localized}" Style="{StaticResource BaseLabel}"
+                      IsChecked="{Binding IsDefaultThemeChecked}" CheckedChanged="ThemeRadioButton_CheckedChanged" Value="defaultTheme" />
+         <RadioButton GroupName="Theme" Grid.Row="6" Grid.Column="0" Content="{Binding LightTheme.Localized}" Style="{StaticResource BaseLabel}"
+                      IsChecked="{Binding IsLightThemeChecked}" CheckedChanged="ThemeRadioButton_CheckedChanged" Value="light" />
+         <RadioButton GroupName="Theme" Grid.Row="7" Grid.Column="0" Content="{Binding DarkTheme.Localized}" Style="{StaticResource BaseLabel}"
+                      IsChecked="{Binding IsDarkThemeChecked}" CheckedChanged="ThemeRadioButton_CheckedChanged" Value="dark" />
 
          <Label Text="{Binding DeleteDbOptionsTitle.Localized}" Style="{StaticResource TitleLabel}" Grid.Row="8" Grid.Column="0" HorizontalOptions="Start" Margin="10,10,0,0" />
-         <Button Text="{Binding Delete.Localized}" Command="{Binding DeleteAllDataCommand}"  Grid.Row="9" Grid.Column="0" Margin="20,10,0,0" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" />
+         <Button Text="{Binding Delete.Localized}" Command="{Binding DeleteAllDataCommand}" Style="{StaticResource BaseButton}" Grid.Row="9" Grid.Column="0" Margin="20,10,0,0" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" />
       </Grid>
    </ContentPage.Content>
 </ContentPage>

@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:SavingsTracker.ViewModels"
              xmlns:resource="clr-namespace:SavingsTracker.Resources"
-             x:Class="SavingsTracker.Views.NewBalancePage">
+             x:Class="SavingsTracker.Views.NewBalancePage"
+             Style="{StaticResource PageBackground}">
 
    <ContentPage.BindingContext>
       <vm:NewBalancePageViewModel />
@@ -11,10 +12,10 @@
 
    <ContentPage.Content>
       <StackLayout>
-         <Entry IsPassword="False" Text="{Binding Balance.Value}" Keyboard="Numeric" Placeholder="{x:Static resource:AppResources.Balance}" Margin="10" />
-         <DatePicker Date="{Binding Balance.DateTime}" Margin="10" />
-         <TimePicker Time="{Binding Balance.DateTime}" Margin="10" />
-         <Button Text="{x:Static resource:AppResources.Save}" Command="{Binding SaveCommand}" Margin="10" />
+         <Entry Text="{Binding Balance.Value}" Keyboard="Numeric" Placeholder="{x:Static resource:AppResources.Balance}" />
+         <DatePicker Date="{Binding Balance.DateTime}" />
+         <TimePicker Time="{Binding Balance.DateTime}" />
+         <Button Text="{x:Static resource:AppResources.Save}" Command="{Binding SaveCommand}" Style="{StaticResource BaseButton}" />
       </StackLayout>
    </ContentPage.Content>
    

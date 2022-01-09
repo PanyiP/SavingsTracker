@@ -1,5 +1,5 @@
 ﻿using SavingsTracker.Resources;
-using System.Globalization;
+using SavingsTracker.Services;
 using Xamarin.CommunityToolkit.Helpers;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -18,15 +18,9 @@ namespace SavingsTracker
          LocalizationResourceManager.Current.PropertyChanged += (sender, e) => AppResources.Culture = LocalizationResourceManager.Current.CurrentCulture;
          LocalizationResourceManager.Current.Init(AppResources.ResourceManager);
 
-         if (Preferences.Get("Culture", "defaultLanguage") == "defaultLanguage")
-         {
-            LocalizationResourceManager.Current.CurrentCulture = CultureInfo.InstalledUICulture;
-         }
-         else
-         {
-            CultureInfo language = new CultureInfo(Preferences.Get("Culture", "en"));
-            LocalizationResourceManager.Current.CurrentCulture = language;
-         }
+         Settings.UpdateAppCulture();
+
+         Settings.UpdateAppTheme();
 
          InitializeComponent();
 
@@ -35,14 +29,27 @@ namespace SavingsTracker
 
       protected override void OnStart()
       {
+         OnResume();
       }
 
       protected override void OnSleep()
       {
+         RequestedThemeChanged -= App_RequestedThemeChanged;
       }
 
       protected override void OnResume()
       {
+         Settings.UpdateAppTheme();
+
+         RequestedThemeChanged += App_RequestedThemeChanged;
+      }
+
+      private void App_RequestedThemeChanged(object sender, AppThemeChangedEventArgs e)
+      {
+         MainThread.BeginInvokeOnMainThread( () =>
+         {
+            Settings.UpdateAppTheme();
+         });
       }
    }
 }

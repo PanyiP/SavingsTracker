@@ -7,16 +7,50 @@
     -->
    <Application.Resources>
       <ResourceDictionary>
-         <Color x:Key="Primary">#2196F3</Color>
-         
-         <Style TargetType="Button">
-            <Setter Property="TextColor" Value="White"></Setter>
+         <!-- Light Theme Colors -->
+         <Color x:Key="LightThemePrimary">#6200EE</Color>
+         <Color x:Key="LightThemePrimaryVariant">#3700B3</Color>
+         <Color x:Key="LightThemeSecondary">#03DAC6</Color>
+         <Color x:Key="LightThemeSecondaryVariant">#018786</Color>
+         <Color x:Key="LightThemeBackground">#FFFFFF</Color>
+         <Color x:Key="LightThemeSurface">#CFCFCF</Color>
+         <Color x:Key="LightThemeError">#B00020</Color>
+         <Color x:Key="LightThemeOnPrimary">#FFFFFF</Color>
+         <Color x:Key="LightThemeOnPrimaryVariant">#FFFFFF</Color>
+         <Color x:Key="LightThemeOnSecondary">#000000</Color>
+         <Color x:Key="LightThemeOnBackground">#000000</Color>
+         <Color x:Key="LightThemeOnSurface">#000000</Color>
+         <Color x:Key="LightThemeOnError">#FFFFFF</Color>
+
+         <!-- Dark Theme Colors -->
+         <Color x:Key="DarkThemePrimary">#BB86FC</Color>
+         <Color x:Key="DarkThemePrimaryVariant">#3700B3</Color>
+         <Color x:Key="DarkThemeSecondary">#03DAC6</Color>
+         <Color x:Key="DarkThemeSecondaryVariant">#03DAC6</Color>
+         <Color x:Key="DarkThemeBackground">#121212</Color>
+         <Color x:Key="DarkThemeSurface">#323232</Color>
+         <Color x:Key="DarkThemeError">#CF6679</Color>
+         <Color x:Key="DarkThemeOnPrimary">#000000</Color>
+         <Color x:Key="DarkThemeOnPrimaryVariant">#FFFFFF</Color>
+         <Color x:Key="DarkThemeOnSecondary">#000000</Color>
+         <Color x:Key="DarkThemeOnBackground">#FFFFFF</Color>
+         <Color x:Key="DarkThemeOnSurface">#FFFFFF</Color>
+         <Color x:Key="DarkThemeOnError">#000000</Color>
+
+         <!-- Page Styles -->
+         <Style TargetType="Page" x:Key="PageBackground">
+            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightThemeBackground}, Dark={StaticResource DarkThemeBackground}}" />
+         </Style>
+
+         <!-- Button Styles -->
+         <Style TargetType="Button" x:Key="BaseButton">
             <Setter Property="VisualStateManager.VisualStateGroups">
                <VisualStateGroupList>
                   <VisualStateGroup x:Name="CommonStates">
                      <VisualState x:Name="Normal">
                         <VisualState.Setters>
-                           <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
+                           <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightThemePrimaryVariant}, Dark={StaticResource DarkThemePrimaryVariant}}" />
+                           <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightThemeOnPrimaryVariant}, Dark={StaticResource DarkThemeOnPrimaryVariant}}" />
                         </VisualState.Setters>
                      </VisualState>
                      <VisualState x:Name="Disabled">
@@ -27,28 +61,69 @@
                   </VisualStateGroup>
                </VisualStateGroupList>
             </Setter>
+            <Setter Property="Margin" Value="10" />
          </Style>
 
-         <Style TargetType="Button" x:Key="PlusButtonStyle">
+         <Style TargetType="Button" BasedOn="{StaticResource BaseButton}" x:Key="PlusButtonStyle">
             <Setter Property="Text" Value="+" />
             <Setter Property="VerticalOptions" Value="CenterAndExpand" />
             <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
             <Setter Property="CornerRadius" Value="100" />
-            <Setter Property="Margin" Value="0,0,0,15" />
+            <Setter Property="Margin" Value="0,10,0,10" />
             <Setter Property="Padding" Value="15" />
             <Setter Property="HeightRequest" Value="55" />
             <Setter Property="WidthRequest" Value="55" />
          </Style>
-         
+
+         <!-- RadioButton Styles -->
          <Style TargetType="RadioButton">
             <Setter Property="Margin" Value="20,10,0,0" />
             <Setter Property="VerticalOptions" Value="Start" />
+            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightThemeSurface}, Dark={StaticResource DarkThemeSurface}}" />
+            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightThemeOnSurface}, Dark={StaticResource DarkThemeOnSurface}}" />
          </Style>
 
-         <Style TargetType="Label" x:Key="TitleLabel">
+         <!-- Label Styles -->
+         <Style TargetType="Label" x:Key="BaseLabel">
+            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightThemeBackground}, Dark={StaticResource DarkThemeBackground}}" />
+            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightThemeOnBackground}, Dark={StaticResource DarkThemeOnBackground}}" />
+            <Setter Property="FontSize" Value="16" />
+         </Style>
+
+         <Style TargetType="Label" BasedOn="{StaticResource BaseLabel}" x:Key="TitleLabel">
             <Setter Property="FontSize" Value="Title" />
             <Setter Property="FontAttributes" Value="Bold" />
          </Style>
+
+         <!-- Line Styles -->
+         <Style TargetType="Line">
+            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightThemeOnBackground}, Dark={StaticResource DarkThemeOnBackground}}" />
+            <Setter Property="HeightRequest" Value="1" />
+         </Style>
+
+         <!-- Entry Styles -->
+         <Style TargetType="Entry">
+            <Setter Property="IsPassword" Value="False" />
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightThemeBackground}, Dark={StaticResource DarkThemeBackground}}" />
+            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightThemeOnBackground}, Dark={StaticResource DarkThemeOnBackground}}" />
+            <Setter Property="PlaceholderColor" Value="{AppThemeBinding Light={StaticResource LightThemeOnBackground}, Dark={StaticResource DarkThemeOnBackground}}" />
+         </Style>
+
+         <!-- DatePicker Styles -->
+         <Style TargetType="DatePicker">
+            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightThemeBackground}, Dark={StaticResource DarkThemeBackground}}" />
+            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightThemeOnBackground}, Dark={StaticResource DarkThemeOnBackground}}" />
+            <Setter Property="Margin" Value="10" />
+         </Style>
+
+         <!-- TimePicker Styles -->
+         <Style TargetType="TimePicker">
+            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightThemeBackground}, Dark={StaticResource DarkThemeBackground}}" />
+            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightThemeOnBackground}, Dark={StaticResource DarkThemeOnBackground}}" />
+            <Setter Property="Margin" Value="10" />
+         </Style>
+
       </ResourceDictionary>
    </Application.Resources>
 </Application>
