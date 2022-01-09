@@ -69,28 +69,28 @@ namespace SavingsTracker.ViewModels
 
       public OptionsPageViewModel()
       {
-         if (Settings.Culture == Settings.defaultLanguage)
+         if (Settings.Culture == Settings.SupportedCultures.DefaultLanguage)
          {
             IsDefaultLanguageChecked = true;
          }
-         else if (Settings.Culture == Settings.english)
+         else if (Settings.Culture == Settings.SupportedCultures.English)
          {
             IsENLanguageChecked = true;
          }
-         else if (Settings.Culture == Settings.hungarian)
+         else if (Settings.Culture == Settings.SupportedCultures.Hungarian)
          {
             IsHULanguageChecked = true;
          }
 
-         if (Settings.Theme == Settings.defaultTheme)
+         if (Settings.Theme == Settings.SupportedThemes.DefaultTheme)
          {
             IsDefaultThemeChecked = true;
          }
-         else if (Settings.Theme == Settings.light)
+         else if (Settings.Theme == Settings.SupportedThemes.Light)
          {
             IsLightThemeChecked = true;
          }
-         else if (Settings.Theme == Settings.dark)
+         else if (Settings.Theme == Settings.SupportedThemes.dark)
          {
             IsDarkThemeChecked = true;
          }
@@ -100,15 +100,15 @@ namespace SavingsTracker.ViewModels
             // Changing the language has code part in App.xaml.cs as well
             if (IsDefaultLanguageChecked)
             {
-               Settings.Culture = Settings.defaultLanguage;
+               Settings.Culture = Settings.SupportedCultures.DefaultLanguage;
             }
             else if (IsENLanguageChecked)
             {
-               Settings.Culture = Settings.english;
+               Settings.Culture = Settings.SupportedCultures.English;
             }
             else if (IsHULanguageChecked)
             {
-               Settings.Culture = Settings.hungarian;
+               Settings.Culture = Settings.SupportedCultures.Hungarian;
             }
          });
 
@@ -117,15 +117,15 @@ namespace SavingsTracker.ViewModels
             // Changing the theme has code part in App.xaml.cs as well
             if (IsDefaultThemeChecked)
             {
-               Settings.Theme = Settings.defaultTheme;
+               Settings.Theme = Settings.SupportedThemes.DefaultTheme;
             }
             else if (IsLightThemeChecked)
             {
-               Settings.Theme = Settings.light;
+               Settings.Theme = Settings.SupportedThemes.Light;
             }
             else if (IsDarkThemeChecked)
             {
-               Settings.Theme = Settings.dark;
+               Settings.Theme = Settings.SupportedThemes.dark;
             }
          });
 

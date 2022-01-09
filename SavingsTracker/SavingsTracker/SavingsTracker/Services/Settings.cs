@@ -7,19 +7,25 @@ namespace SavingsTracker.Services
 {
    public static class Settings
    {
-      public const string defaultLanguage = "DefaultLanguage";
-      public const string english = "En";
-      public const string hungarian = "Hu";
+      public static class SupportedCultures
+      {
+         public const string DefaultLanguage = "DefaultLanguage";
+         public const string English = "En";
+         public const string Hungarian = "Hu";
+      }
 
-      public const string defaultTheme = "DefaultTheme";
-      public const string light = "Light";
-      public const string dark = "Dark";
+      public static class SupportedThemes
+      {
+         public const string DefaultTheme = "DefaultTheme";
+         public const string Light = "Light";
+         public const string dark = "Dark";
+      }
 
       public static string Culture
       {
          get
          {
-            return Preferences.Get("Culture", defaultLanguage);
+            return Preferences.Get("Culture", SupportedCultures.DefaultLanguage);
          }
          set
          {
@@ -32,7 +38,7 @@ namespace SavingsTracker.Services
       {
          get
          {
-            return Preferences.Get("Theme", defaultTheme);
+            return Preferences.Get("Theme", SupportedThemes.DefaultTheme);
          }
          set
          {
@@ -43,15 +49,15 @@ namespace SavingsTracker.Services
 
       public static void UpdateAppTheme()
       {
-         if (Theme == defaultTheme)
+         if (Theme == SupportedThemes.DefaultTheme)
          {
             App.Current.UserAppTheme = OSAppTheme.Unspecified;
          }
-         else if (Theme == light)
+         else if (Theme == SupportedThemes.Light)
          {
             App.Current.UserAppTheme = OSAppTheme.Light;
          }
-         else if (Theme == dark)
+         else if (Theme == SupportedThemes.dark)
          {
             App.Current.UserAppTheme = OSAppTheme.Dark;
          }
@@ -59,18 +65,13 @@ namespace SavingsTracker.Services
 
       public static void UpdateAppCulture()
       {
-         if (Culture == defaultLanguage)
+         if (Culture == SupportedCultures.DefaultLanguage)
          {
             LocalizationResourceManager.Current.CurrentCulture = CultureInfo.InstalledUICulture;
          }
-         else if (Culture == english)
+         else 
          {
-            CultureInfo language = new CultureInfo(english);
-            LocalizationResourceManager.Current.CurrentCulture = language;
-         }
-         else if (Culture == hungarian)
-         {
-            CultureInfo language = new CultureInfo(hungarian);
+            CultureInfo language = new CultureInfo(Culture);
             LocalizationResourceManager.Current.CurrentCulture = language;
          }
       }
