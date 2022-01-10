@@ -40,6 +40,9 @@
          <!-- Page Styles -->
          <Style TargetType="Page" x:Key="PageBackground">
             <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightThemeBackground}, Dark={StaticResource DarkThemeBackground}}" />
+            <Setter Property="Shell.BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightThemeBackground}, Dark={StaticResource DarkThemeBackground}}" />
+            <Setter Property="Shell.TitleColor" Value="{AppThemeBinding Light={StaticResource LightThemeOnBackground}, Dark={StaticResource DarkThemeOnBackground}}" />
+            <Setter Property="Shell.ForegroundColor" Value="{AppThemeBinding Light={StaticResource LightThemeOnBackground}, Dark={StaticResource DarkThemeOnBackground}}" />
          </Style>
 
          <!-- Button Styles -->

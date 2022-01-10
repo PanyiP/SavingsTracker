@@ -151,7 +151,7 @@ namespace SavingsTracker.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Edit Saving account.
+        ///   Looks up a localized string similar to Edit Saving Account.
         /// </summary>
         internal static string EditNewSavingAccountPageTitle {
             get {
@@ -241,7 +241,7 @@ namespace SavingsTracker.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to New Saving account.
+        ///   Looks up a localized string similar to New Saving Account.
         /// </summary>
         internal static string NewSavingAccountPageTitle {
             get {

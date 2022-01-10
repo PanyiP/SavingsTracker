@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:SavingsTracker.ViewModels"
              x:Class="SavingsTracker.Views.OptionsPage"
-             BackgroundColor="{AppThemeBinding Light={StaticResource LightThemeBackground}, Dark={StaticResource DarkThemeBackground}}"
+             Style="{StaticResource PageBackground}"
              Title="{Binding Title.Localized}">
 
    <ContentPage.BindingContext>

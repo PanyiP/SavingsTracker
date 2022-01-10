@@ -21,8 +21,11 @@
    <Shell.Resources>
       <ResourceDictionary>
          <Style x:Key="BaseStyle" TargetType="Element">
+            <!-- Shell navigation bar background color -->
             <Setter Property="Shell.BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightThemeSurface}, Dark={StaticResource DarkThemeSurface}}" />
+            <!-- Hamburger menu icon color -->
             <Setter Property="Shell.ForegroundColor" Value="{AppThemeBinding Light={StaticResource LightThemeOnSurface}, Dark={StaticResource DarkThemeOnSurface}}" />
+            <!-- Shell navigation bar text color -->
             <Setter Property="Shell.TitleColor" Value="{AppThemeBinding Light={StaticResource LightThemeOnSurface}, Dark={StaticResource DarkThemeOnSurface}}" />
             <Setter Property="Shell.UnselectedColor" Value="{AppThemeBinding Light={StaticResource LightThemeBackground}, Dark={StaticResource DarkThemeBackground}}" />
             <Setter Property="Shell.TabBarBackgroundColor" Value="{AppThemeBinding Light={StaticResource LightThemeSurface}, Dark={StaticResource DarkThemeSurface}}" />
@@ -138,6 +141,8 @@
          </Grid>
       </DataTemplate>
    </Shell.FlyoutHeaderTemplate>
+
+   <Shell.NavBarHasShadow>True</Shell.NavBarHasShadow>
 
    <!-- 
         When the Flyout is visible this defines the content to display in the flyout.
