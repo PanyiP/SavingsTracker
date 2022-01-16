@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:local="clr-namespace:SavingsTracker.CustomControls"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SavingsTracker.App">
    <!--
@@ -7,13 +8,15 @@
     -->
    <Application.Resources>
       <ResourceDictionary>
+         <Color x:Key="Accent">Red</Color>
+         
          <!-- Light Theme Colors -->
          <Color x:Key="LightThemePrimary">#6200EE</Color>
          <Color x:Key="LightThemePrimaryVariant">#3700B3</Color>
          <Color x:Key="LightThemeSecondary">#03DAC6</Color>
          <Color x:Key="LightThemeSecondaryVariant">#018786</Color>
          <Color x:Key="LightThemeBackground">#FFFFFF</Color>
-         <Color x:Key="LightThemeSurface">#CFCFCF</Color>
+         <Color x:Key="LightThemeSurface">#EFEFEF</Color>
          <Color x:Key="LightThemeError">#B00020</Color>
          <Color x:Key="LightThemeOnPrimary">#FFFFFF</Color>
          <Color x:Key="LightThemeOnPrimaryVariant">#FFFFFF</Color>
@@ -40,9 +43,9 @@
          <!-- Page Styles -->
          <Style TargetType="Page" x:Key="PageBackground">
             <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightThemeBackground}, Dark={StaticResource DarkThemeBackground}}" />
-            <Setter Property="Shell.BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightThemeBackground}, Dark={StaticResource DarkThemeBackground}}" />
-            <Setter Property="Shell.TitleColor" Value="{AppThemeBinding Light={StaticResource LightThemeOnBackground}, Dark={StaticResource DarkThemeOnBackground}}" />
-            <Setter Property="Shell.ForegroundColor" Value="{AppThemeBinding Light={StaticResource LightThemeOnBackground}, Dark={StaticResource DarkThemeOnBackground}}" />
+            <Setter Property="Shell.BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightThemeSurface}, Dark={StaticResource DarkThemeSurface}}" />
+            <Setter Property="Shell.TitleColor" Value="{AppThemeBinding Light={StaticResource LightThemeOnSurface}, Dark={StaticResource DarkThemeOnSurface}}" />
+            <Setter Property="Shell.ForegroundColor" Value="{AppThemeBinding Light={StaticResource LightThemeOnSurface}, Dark={StaticResource DarkThemeOnSurface}}" />
          </Style>
 
          <!-- Button Styles -->
@@ -52,8 +55,8 @@
                   <VisualStateGroup x:Name="CommonStates">
                      <VisualState x:Name="Normal">
                         <VisualState.Setters>
-                           <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightThemePrimaryVariant}, Dark={StaticResource DarkThemePrimaryVariant}}" />
-                           <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightThemeOnPrimaryVariant}, Dark={StaticResource DarkThemeOnPrimaryVariant}}" />
+                           <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightThemePrimary}, Dark={StaticResource DarkThemePrimary}}" />
+                           <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightThemeOnPrimary}, Dark={StaticResource DarkThemeOnPrimary}}" />
                         </VisualState.Setters>
                      </VisualState>
                      <VisualState x:Name="Disabled">
@@ -79,7 +82,7 @@
          </Style>
 
          <!-- RadioButton Styles -->
-         <Style TargetType="RadioButton">
+         <Style TargetType="local:MyRadioButton">
             <Setter Property="Margin" Value="20,10,0,0" />
             <Setter Property="VerticalOptions" Value="Start" />
             <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightThemeSurface}, Dark={StaticResource DarkThemeSurface}}" />
@@ -105,7 +108,7 @@
          </Style>
 
          <!-- Entry Styles -->
-         <Style TargetType="Entry">
+         <Style TargetType="local:MyEntry">
             <Setter Property="IsPassword" Value="False" />
             <Setter Property="Margin" Value="10" />
             <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightThemeBackground}, Dark={StaticResource DarkThemeBackground}}" />

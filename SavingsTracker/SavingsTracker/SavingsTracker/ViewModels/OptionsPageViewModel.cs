@@ -7,9 +7,7 @@ using Xamarin.Forms;
 namespace SavingsTracker.ViewModels
 {
    internal class OptionsPageViewModel : BaseViewModel
-   {//TODO: Theme: Radio button color should be changed based on the Theme
-      //TODO: Theme: Radio button underlining should change color according to the theme.
-      //TODO: Theme: Changing the theme is sometimes crashes the App.
+   {//TODO: Theme: Changing the theme is sometimes crashes the App.
       public LocalizedString Title { get; } = new LocalizedString(() => AppResources.Options);
       public LocalizedString LanguageOptionsTitle { get; } = new LocalizedString(() => AppResources.LanguageOptionsTitle);
       public LocalizedString Default { get; } = new LocalizedString(() => AppResources.Default);

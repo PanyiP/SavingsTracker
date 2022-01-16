@@ -13,7 +13,7 @@ using Xamarin.Forms;
 namespace SavingsTracker.ViewModels
 {
    internal class SavingAccountDetailsPageViewModel : BaseViewModel, IQueryAttributable
-   {//TODO: Implement graph view
+   {//TODO: New feature: Implement graph view
       public LocalizedString NewBalance { get; } = new LocalizedString(() => AppResources.NewBalancePageTitle);
 
       private string savingAccountId;

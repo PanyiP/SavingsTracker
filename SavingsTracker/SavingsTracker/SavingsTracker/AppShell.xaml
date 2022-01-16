@@ -6,7 +6,7 @@
        xmlns:vm="clr-namespace:SavingsTracker.ViewModels"
        Title="SavingsTracker"
        x:Class="SavingsTracker.AppShell"
-       FlyoutBackgroundColor="{AppThemeBinding Light={StaticResource LightThemeBackground}, Dark={StaticResource DarkThemeBackground}}">
+       FlyoutBackgroundColor="{AppThemeBinding Light={StaticResource LightThemeSurface}, Dark={StaticResource DarkThemeSurface}}">
 
    <!--
         The overall app visual hierarchy is defined here, along with navigation.
@@ -48,17 +48,17 @@
                      <VisualState x:Name="Normal">
                         <VisualState.Setters>
                            <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor"
-                                   Value="{AppThemeBinding Light={StaticResource LightThemeOnBackground}, Dark={StaticResource DarkThemeOnBackground}}" />
+                                   Value="{AppThemeBinding Light={StaticResource LightThemeOnSurface}, Dark={StaticResource DarkThemeOnSurface}}" />
                            <Setter Property="BackgroundColor"
-                                   Value="{AppThemeBinding Light={StaticResource LightThemeBackground}, Dark={StaticResource DarkThemeBackground}}" />
+                                   Value="{AppThemeBinding Light={StaticResource LightThemeSurface}, Dark={StaticResource DarkThemeSurface}}" />
                         </VisualState.Setters>
                      </VisualState>
                      <VisualState x:Name="Selected">
                         <VisualState.Setters>
                            <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor"
-                                   Value="{AppThemeBinding Light={StaticResource LightThemeOnSurface}, Dark={StaticResource DarkThemeOnSurface}}" />
+                                   Value="{AppThemeBinding Light={StaticResource LightThemePrimary}, Dark={StaticResource DarkThemePrimary}}" />
                            <Setter Property="BackgroundColor"
-                                   Value="{AppThemeBinding Light={StaticResource LightThemeSurface}, Dark={StaticResource DarkThemeSurface}}" />
+                                   Value="{AppThemeBinding Light={StaticResource LightThemeBackground}, Dark={StaticResource DarkThemeBackground}}" />
                         </VisualState.Setters>
                      </VisualState>
                   </VisualStateGroup>
@@ -72,7 +72,7 @@
                   <Setter Property="FlyoutIcon">
                      <Setter.Value>
                         <FontImageSource FontFamily="FAFS" Glyph="{x:Static fontAwesome:FontAwesomeIcons.ChartLine}"
-                                         Color="{AppThemeBinding Light={StaticResource LightThemeOnSurface}, Dark={StaticResource DarkThemeOnSurface}}" />
+                                         Color="{AppThemeBinding Light={StaticResource LightThemePrimary}, Dark={StaticResource DarkThemePrimary}}" />
                      </Setter.Value>
                   </Setter>
                </Trigger>
@@ -80,7 +80,7 @@
                   <Setter Property="FlyoutIcon">
                      <Setter.Value>
                         <FontImageSource FontFamily="FAFS" Glyph="{x:Static fontAwesome:FontAwesomeIcons.ChartLine}"
-                                         Color="{AppThemeBinding Light={StaticResource LightThemeOnBackground}, Dark={StaticResource DarkThemeOnBackground}}" />
+                                         Color="{AppThemeBinding Light={StaticResource LightThemeOnSurface}, Dark={StaticResource DarkThemeOnSurface}}" />
                      </Setter.Value>
                   </Setter>
                </Trigger>
@@ -93,7 +93,7 @@
                   <Setter Property="FlyoutIcon">
                      <Setter.Value>
                         <FontImageSource FontFamily="FAFS" Glyph="{x:Static fontAwesome:FontAwesomeIcons.Cog}"
-                                         Color="{AppThemeBinding Light={StaticResource LightThemeOnSurface}, Dark={StaticResource DarkThemeOnSurface}}" />
+                                         Color="{AppThemeBinding Light={StaticResource LightThemePrimary}, Dark={StaticResource DarkThemePrimary}}" />
                      </Setter.Value>
                   </Setter>
                </Trigger>
@@ -101,7 +101,7 @@
                   <Setter Property="FlyoutIcon">
                      <Setter.Value>
                         <FontImageSource FontFamily="FAFS" Glyph="{x:Static fontAwesome:FontAwesomeIcons.Cog}"
-                                         Color="{AppThemeBinding Light={StaticResource LightThemeOnBackground}, Dark={StaticResource DarkThemeOnBackground}}" />
+                                         Color="{AppThemeBinding Light={StaticResource LightThemeOnSurface}, Dark={StaticResource DarkThemeOnSurface}}" />
                      </Setter.Value>
                   </Setter>
                </Trigger>
@@ -118,7 +118,7 @@
                      <VisualState x:Name="Normal">
                         <VisualState.Setters>
                            <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor"
-                                   Value="{AppThemeBinding Light={StaticResource LightThemeOnBackground}, Dark={StaticResource DarkThemeOnBackground}}" />
+                                   Value="{AppThemeBinding Light={StaticResource LightThemeOnSurface}, Dark={StaticResource DarkThemeOnSurface}}" />
                         </VisualState.Setters>
                      </VisualState>
                   </VisualStateGroup>

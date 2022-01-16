@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using SavingsTracker.DependencyServices;
+using System.Globalization;
 using Xamarin.CommunityToolkit.Helpers;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -60,6 +61,32 @@ namespace SavingsTracker.Services
          else if (Theme == SupportedThemes.dark)
          {
             App.Current.UserAppTheme = OSAppTheme.Dark;
+         }
+
+         var Environment = DependencyService.Get<IEnvironment>();
+         if (App.Current.RequestedTheme == OSAppTheme.Dark)
+         {
+            if (Application.Current.Resources.TryGetValue("DarkThemeSurface", out var backgroundColor))
+            {
+               System.Drawing.Color DarkThemeBackground =
+                  Color.FromRgba(((Color)backgroundColor).R,
+                                 ((Color)backgroundColor).G,
+                                 ((Color)backgroundColor).B,
+                                 ((Color)backgroundColor).A);
+               Environment.SetStatusBarColor(DarkThemeBackground, false);
+            }
+         }
+         else
+         {
+            if (Application.Current.Resources.TryGetValue("LightThemeSurface", out var backgroundColor))
+            {
+               System.Drawing.Color LightThemeBackground =
+                  Color.FromRgba(((Color)backgroundColor).R,
+                                 ((Color)backgroundColor).G,
+                                 ((Color)backgroundColor).B,
+                                 ((Color)backgroundColor).A);
+               Environment.SetStatusBarColor(LightThemeBackground, true);
+            }
          }
       }
 

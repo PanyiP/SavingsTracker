@@ -99,7 +99,9 @@
             </CollectionView.ItemTemplate>
          </CollectionView>
 
-         <Button Style="{DynamicResource PlusButtonStyle}" Command="{Binding NewSavingAccountCommand}" />
+         <StackLayout BackgroundColor="{AppThemeBinding Light={StaticResource LightThemeSurface}, Dark={StaticResource DarkThemeSurface}}">
+            <Button Style="{StaticResource PlusButtonStyle}" Command="{Binding NewSavingAccountCommand}" />
+         </StackLayout>
 
       </StackLayout>
    </RefreshView>

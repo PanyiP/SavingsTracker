@@ -1,10 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:local="clr-namespace:SavingsTracker.CustomControls"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:SavingsTracker.ViewModels"
              xmlns:resource="clr-namespace:SavingsTracker.Resources"
              x:Class="SavingsTracker.Views.NewBalancePage"
-             Style="{StaticResource PageBackground}">
+             Style="{StaticResource PageBackground}"
+             Title="{Binding Title}">
 
    <ContentPage.BindingContext>
       <vm:NewBalancePageViewModel />
@@ -12,7 +14,7 @@
 
    <ContentPage.Content>
       <StackLayout>
-         <Entry Text="{Binding Balance.Value}" Keyboard="Numeric" Placeholder="{x:Static resource:AppResources.Balance}" />
+         <local:MyEntry Text="{Binding Balance.Value}" Keyboard="Numeric" Placeholder="{x:Static resource:AppResources.Balance}" />
          <DatePicker Date="{Binding Balance.DateTime}" />
          <TimePicker Time="{Binding Balance.DateTime}" />
          <Button Text="{x:Static resource:AppResources.Save}" Command="{Binding SaveCommand}" Style="{StaticResource BaseButton}" />

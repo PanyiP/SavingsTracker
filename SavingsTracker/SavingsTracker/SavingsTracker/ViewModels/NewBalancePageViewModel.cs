@@ -9,7 +9,7 @@ using Xamarin.Forms;
 namespace SavingsTracker.ViewModels
 {
    internal class NewBalancePageViewModel : BaseViewModel, IQueryAttributable
-   {//TODO: Implement binding of TimePicker. It should be bound to a TimeSpan object, but TimeSpan object cannot be saved into SQLite db.
+   {//TODO: Bugfix: Implement binding of TimePicker. It should be bound to a TimeSpan object, but TimeSpan object cannot be saved into SQLite db.
       //TODO: Theme: TimePicker and DatePicker underlining should change color according to the theme.
       //TODO: Theme: TimePicker and DatePicker should change color according to the theme.
       private string title;

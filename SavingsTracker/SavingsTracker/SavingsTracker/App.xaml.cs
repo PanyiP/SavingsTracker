@@ -8,6 +8,8 @@ namespace SavingsTracker
 {
    public partial class App : Application
    {
+      //TODO: Comment: Add comments to every method, type, class, property, etc
+      //TODO: Testing: Add unit tests
       public App()
       {
          // I have implemented localization three different ways:

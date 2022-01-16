@@ -64,6 +64,9 @@
     <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DependencyServices\Environment.cs" />
+    <Compile Include="Renderers\MyEntryRenderer.cs" />
+    <Compile Include="Renderers\MyRadioButtonRenderer.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

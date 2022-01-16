@@ -14,9 +14,11 @@
       <vm:SavingAccountDetailsPageViewModel />
    </ContentPage.BindingContext>
 
-   <xct:TabView TabStripBackgroundColor="{AppThemeBinding Light={StaticResource LightThemePrimaryVariant}, Dark={StaticResource DarkThemePrimaryVariant}}"
-                TabIndicatorColor="{AppThemeBinding Light={StaticResource LightThemePrimary}, Dark={StaticResource DarkThemePrimary}}">
-      <xct:TabViewItem Text="{x:Static resource:AppResources.History}">
+   <xct:TabView TabStripBackgroundColor="{AppThemeBinding Light={StaticResource LightThemeSurface}, Dark={StaticResource DarkThemeSurface}}"
+                TabIndicatorColor="{AppThemeBinding Light={StaticResource LightThemePrimary}, Dark={StaticResource DarkThemePrimary}}"
+                TabStripBorderColor="{AppThemeBinding Light={StaticResource LightThemeBackground}, Dark={StaticResource DarkThemeBackground}}">
+      <xct:TabViewItem Text="{x:Static resource:AppResources.History}"
+                       TextColor="{AppThemeBinding Light={StaticResource LightThemeOnSurface}, Dark={StaticResource DarkThemeOnSurface}}">
          <RefreshView IsRefreshing="{Binding IsRefreshBusy}" Command="{Binding RefreshViewCommand}">
             <StackLayout>
                <CollectionView x:Name="ItemsListView"
@@ -99,14 +101,17 @@
                   </CollectionView.ItemTemplate>
                </CollectionView>
 
-               <Button Style="{StaticResource PlusButtonStyle}" Command="{Binding NewBalanceCommand}" />
+               <StackLayout BackgroundColor="{AppThemeBinding Light={StaticResource LightThemeSurface}, Dark={StaticResource DarkThemeSurface}}">
+                  <Button Style="{StaticResource PlusButtonStyle}" Command="{Binding NewBalanceCommand}" />
+               </StackLayout>
 
             </StackLayout>
          </RefreshView>
       </xct:TabViewItem>
 
-      <xct:TabViewItem Text="{x:Static resource:AppResources.Graph}">
-         <Label Text="Ide jön majd a grafikon :)" HorizontalOptions="Center" Margin="20" />
+      <xct:TabViewItem Text="{x:Static resource:AppResources.Graph}"
+                       TextColor="{AppThemeBinding Light={StaticResource LightThemeOnSurface}, Dark={StaticResource DarkThemeOnSurface}}">
+         <Label Text="Ide jön majd a grafikon :)" HorizontalOptions="Center" Margin="20" Style="{StaticResource BaseLabel}" />
       </xct:TabViewItem>
 
    </xct:TabView>
