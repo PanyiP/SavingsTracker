@@ -10,6 +10,7 @@ namespace SavingsTracker
    {
       //TODO: Comment: Add comments to every method, type, class, property, etc
       //TODO: Testing: Add unit tests
+      //TODO: Create splash screen
       public App()
       {
          // I have implemented localization three different ways:
@@ -20,8 +21,10 @@ namespace SavingsTracker
          LocalizationResourceManager.Current.PropertyChanged += (sender, e) => AppResources.Culture = LocalizationResourceManager.Current.CurrentCulture;
          LocalizationResourceManager.Current.Init(AppResources.ResourceManager);
 
+         // Set application language
          Settings.UpdateAppCulture();
 
+         // Set application theme
          Settings.UpdateAppTheme();
 
          InitializeComponent();
