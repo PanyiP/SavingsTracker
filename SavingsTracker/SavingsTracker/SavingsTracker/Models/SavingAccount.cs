@@ -3,10 +3,16 @@ using System;
 
 namespace SavingsTracker.Models
 {
+   /// <summary>
+   /// Class to represent a Saving Account
+   /// </summary>
    public class SavingAccount : BaseModel
    {
       #region Properties
       private string _accountId;
+      /// <summary>
+      /// The unique ID of the Saving Account. Used as primary key in the SQLite database.
+      /// </summary>
       [PrimaryKey]
       public string AccountId
       { 
@@ -15,6 +21,9 @@ namespace SavingsTracker.Models
       }
 
       private string _name;
+      /// <summary>
+      /// The name of the Saving Account
+      /// </summary>
       public string Name
       {
          get { return _name; }
@@ -22,6 +31,9 @@ namespace SavingsTracker.Models
       }
 
       private string _currency;
+      /// <summary>
+      /// The currency of the Saving Account
+      /// </summary>
       public string Currency
       {
          get { return _currency; }
@@ -29,6 +41,9 @@ namespace SavingsTracker.Models
       }
 
       private Balance _currentBalance;
+      /// <summary>
+      /// The latest balance of the Saving Account
+      /// </summary>
       [Ignore]
       public Balance CurrentBalance
       {
@@ -37,27 +52,27 @@ namespace SavingsTracker.Models
       }
       #endregion
 
-      #region Constructor
+      /// <summary>
+      /// Default constructor
+      /// </summary>
       public SavingAccount()
       {
          _accountId = Guid.NewGuid().ToString();
          _name = "";
          _currency = "";
       }
-
-      public SavingAccount(string name, string currency)
-      {
-         _accountId = Guid.NewGuid().ToString();
-         _name = name;
-         _currency = currency;
-      }
-      #endregion
    }
 
+   /// <summary>
+   /// Class to represent a Balance for a Saving Account
+   /// </summary>
    public class Balance : BaseModel
    {
       #region Properties
       private string _balanceId;
+      /// <summary>
+      /// The unique ID of the Balance. Used as primary key in the SQLite database.
+      /// </summary>
       [PrimaryKey]
       public string BalanceId
       {
@@ -66,6 +81,9 @@ namespace SavingsTracker.Models
       }
 
       private string _accountId;
+      /// <summary>
+      /// The parent Saving Account Id. Used to associate the Balance with a Saving Account.
+      /// </summary>
       [Indexed]
       public string AccountId
       {
@@ -94,6 +112,9 @@ namespace SavingsTracker.Models
       }
 
       private Double _value;
+      /// <summary>
+      /// The actual value of the Balance at a given Date
+      /// </summary>
       public Double Value
       {
          get { return _value; }
@@ -101,33 +122,12 @@ namespace SavingsTracker.Models
       }
       #endregion
 
-      #region Constructor
+      /// <summary>
+      /// Default Constructor
+      /// </summary>
       public Balance()
       {
          BalanceId = Guid.NewGuid().ToString();
       }
-
-      public Balance(string accountID)
-      {
-         BalanceId = Guid.NewGuid().ToString();
-         AccountId = accountID;
-      }
-
-      public Balance(string accountID, DateTime datetime, Double value)
-      {
-         BalanceId = Guid.NewGuid().ToString();
-         AccountId = accountID;
-         DateTime = datetime;
-         Value = value;
-      }
-
-      public Balance(string id, string accountID, DateTime datetime, Double value)
-      {
-         BalanceId = id;
-         AccountId = accountID;
-         DateTime = datetime;
-         Value = value;
-      }
-      #endregion
    }
 }

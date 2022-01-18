@@ -11,8 +11,15 @@ using Xamarin.Forms.Platform.iOS;
 [assembly: ExportRenderer(typeof(MyRadioButton), typeof(MyRadioButtonRenderer))]
 namespace SavingsTracker.iOS.Renderers
 {
+   /// <summary>
+   /// Custom renderer class for the custom RadioButton view MyRadioButton
+   /// </summary>
    public class MyRadioButtonRenderer : RadioButtonRenderer
    {
+      /// <summary>
+      /// Sets theme specific button color for the view
+      /// </summary>
+      /// <param name="e"></param>
       protected override void OnElementChanged(ElementChangedEventArgs<Entry> e)
       {
          base.OnElementChanged(e);

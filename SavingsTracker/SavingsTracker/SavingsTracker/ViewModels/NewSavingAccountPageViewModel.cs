@@ -7,9 +7,15 @@ using Xamarin.Forms;
 
 namespace SavingsTracker.ViewModels
 {
+   /// <summary>
+   /// View model for the NewSavingAccountPage
+   /// </summary>
    internal class NewSavingAccountPageViewModel : BaseViewModel, IQueryAttributable
    {
       private string title;
+      /// <summary>
+      /// The Title of the Page
+      /// </summary>
       public string Title
       {
          get { return title; }
@@ -17,6 +23,9 @@ namespace SavingsTracker.ViewModels
       }
 
       private bool isNewSavingAccount;
+      /// <summary>
+      /// Property to know if the Page is to edit a Saving Account or create a new one
+      /// </summary>
       public bool IsNewSavingAccount
       {
          get { return isNewSavingAccount; }
@@ -24,14 +33,23 @@ namespace SavingsTracker.ViewModels
       }
 
       private SavingAccount savingAccount;
+      /// <summary>
+      /// The Saving Account to be edited or the new Saving Account to be created
+      /// </summary>
       public SavingAccount SavingAccount
       {
          get { return savingAccount; }
          set { SetProperty(ref savingAccount, value); }
       }
 
+      /// <summary>
+      /// Save the modified Saving Account or new Saving Account
+      /// </summary>
       public ICommand SaveCommand { get; }
 
+      /// <summary>
+      /// Constructor
+      /// </summary>
       public NewSavingAccountPageViewModel()
       {
          savingAccount = new SavingAccount();
@@ -51,12 +69,16 @@ namespace SavingsTracker.ViewModels
          });
       }
 
+      /// <summary>
+      /// Process the navigation attributes of the Page
+      /// </summary>
+      /// <param name="query"></param>
       public void ApplyQueryAttributes(IDictionary<string, string> query)
       {
-         ProcessPageParameters(query);
+         ProcessPageParametersAsync(query);
       }
 
-      private async void ProcessPageParameters(IDictionary<string, string> query)
+      private async void ProcessPageParametersAsync(IDictionary<string, string> query)
       {
          // The query parameter requires URL decoding.
          // Store if we are making a new saving account or editing an old one

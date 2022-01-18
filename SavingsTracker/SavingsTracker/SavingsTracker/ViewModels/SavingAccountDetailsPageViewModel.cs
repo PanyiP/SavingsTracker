@@ -12,13 +12,22 @@ using Xamarin.Forms;
 
 namespace SavingsTracker.ViewModels
 {
+   /// <summary>
+   /// View model for the SavingAccountDetailsPage
+   /// </summary>
    internal class SavingAccountDetailsPageViewModel : BaseViewModel, IQueryAttributable
    {//TODO: New feature: Implement graph view
       public LocalizedString NewBalance { get; } = new LocalizedString(() => AppResources.NewBalancePageTitle);
 
+      /// <summary>
+      /// The Saving Account ID to be loaded
+      /// </summary>
       private string savingAccountId;
 
       private SavingAccount savingAccount;
+      /// <summary>
+      /// The Saving Account to be shown on the page
+      /// </summary>
       public SavingAccount SavingAccount
       {
          get { return savingAccount; }
@@ -26,6 +35,9 @@ namespace SavingsTracker.ViewModels
       }
 
       private ObservableCollection<Balance> balances;
+      /// <summary>
+      /// The Balances to be shown on the page
+      /// </summary>
       public ObservableCollection<Balance> Balances
       {
          get { return balances; }
@@ -33,6 +45,9 @@ namespace SavingsTracker.ViewModels
       }
 
       private bool isRefreshBusy;
+      /// <summary>
+      /// Busy indicator for refreshing the page
+      /// </summary>
       public bool IsRefreshBusy
       {
          get { return isRefreshBusy; }
@@ -43,11 +58,26 @@ namespace SavingsTracker.ViewModels
          }
       }
 
+      /// <summary>
+      /// Refresh the page
+      /// </summary>
       public ICommand RefreshViewCommand { get; }
+      /// <summary>
+      /// Delete Balance
+      /// </summary>
       public ICommand DeleteBalanceCommand { get; }
+      /// <summary>
+      /// Edit Balance
+      /// </summary>
       public ICommand EditBalanceCommand { get; }
+      /// <summary>
+      /// Create new Balance
+      /// </summary>
       public ICommand NewBalanceCommand { get; }
 
+      /// <summary>
+      /// Constructor
+      /// </summary>
       public SavingAccountDetailsPageViewModel()
       {
          RefreshViewCommand = new Command(
@@ -94,6 +124,10 @@ namespace SavingsTracker.ViewModels
          });
       }
 
+      /// <summary>
+      /// Process the navigation attributes of the Page
+      /// </summary>
+      /// <param name="query"></param>
       public void ApplyQueryAttributes(IDictionary<string, string> query)
       {
          // The query parameter requires URL decoding.

@@ -9,9 +9,16 @@ using Xamarin.Forms.Platform.iOS;
 [assembly: ExportRenderer(typeof(MyEntry), typeof(MyEntryRenderer))]
 namespace SavingsTracker.iOS.Renderers
 {// TODO: Theme: Set entry underline in iOS to proper color
-//https://stackoverflow.com/questions/38207168/is-it-possible-to-change-the-colour-of-the-line-below-border-of-a-textbox-ent
+ //https://stackoverflow.com/questions/38207168/is-it-possible-to-change-the-colour-of-the-line-below-border-of-a-textbox-ent
+   /// <summary>
+   /// Custom renderer class for the custom Entry view MyEntry
+   /// </summary>
    internal class MyEntryRenderer : EntryRenderer
    {
+      /// <summary>
+      /// Sets theme specific background color for the view
+      /// </summary>
+      /// <param name="e"></param>
       protected override void OnElementChanged(ElementChangedEventArgs<Entry> e)
       {
          base.OnElementChanged(e);

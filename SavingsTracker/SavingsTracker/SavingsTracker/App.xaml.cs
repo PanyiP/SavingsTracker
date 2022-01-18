@@ -8,7 +8,6 @@ namespace SavingsTracker
 {
    public partial class App : Application
    {
-      //TODO: Comment: Add comments to every method, type, class, property, etc
       //TODO: Testing: Add unit tests
       //TODO: Create splash screen
       public App()

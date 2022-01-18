@@ -9,12 +9,18 @@ using Xamarin.Forms;
 
 namespace SavingsTracker.ViewModels
 {
+   /// <summary>
+   /// View model for the SavingAccountsPage
+   /// </summary>
    internal class SavingAccountsPageViewModel : BaseViewModel
    {
       public LocalizedString NewAccount { get; } = new LocalizedString(() => AppResources.NewAccount);
       public LocalizedString SavingAccountsHeader { get; } = new LocalizedString(() => AppResources.SavingAccounts);
 
       private ObservableCollection<SavingAccount> savingAccounts;
+      /// <summary>
+      /// Saving Accounts to be shown on the page
+      /// </summary>
       public ObservableCollection<SavingAccount> SavingAccounts
       {
          get { return savingAccounts; }
@@ -22,6 +28,9 @@ namespace SavingsTracker.ViewModels
       }
 
       private bool isRefreshBusy;
+      /// <summary>
+      /// Busy indicator for refreshing the page
+      /// </summary>
       public bool IsRefreshBusy
       {
          get { return isRefreshBusy; }
@@ -32,12 +41,30 @@ namespace SavingsTracker.ViewModels
          }
       }
 
+      /// <summary>
+      /// Load Saving Account Details page with the tapped Saving Account data
+      /// </summary>
       public ICommand SavingAccountTappedCommand { get; }
+      /// <summary>
+      /// Refresh the page
+      /// </summary>
       public ICommand RefreshViewCommand { get; }
+      /// <summary>
+      /// Load create new Saving Account page
+      /// </summary>
       public ICommand NewSavingAccountCommand { get; }
+      /// <summary>
+      /// Delete Saving Account
+      /// </summary>
       public ICommand DeleteSavingAccountCommand { get; }
+      /// <summary>
+      /// Load edit Saving Account page
+      /// </summary>
       public ICommand EditSavingAccountCommand { get; }
 
+      /// <summary>
+      /// Constructor
+      /// </summary>
       public SavingAccountsPageViewModel()
       {
          SavingAccountTappedCommand = new Command<object>(async (obj) =>

@@ -8,11 +8,17 @@ using Xamarin.Forms;
 
 namespace SavingsTracker.ViewModels
 {
+   /// <summary>
+   /// View model for the NewBalancePage
+   /// </summary>
    internal class NewBalancePageViewModel : BaseViewModel, IQueryAttributable
    {//TODO: Bugfix: Implement binding of TimePicker. It should be bound to a TimeSpan object, but TimeSpan object cannot be saved into SQLite db.
       //TODO: Theme: TimePicker and DatePicker underlining should change color according to the theme.
       //TODO: Theme: TimePicker and DatePicker should change color according to the theme.
       private string title;
+      /// <summary>
+      /// The Title of the Page
+      /// </summary>
       public string Title
       {
          get { return title; }
@@ -20,6 +26,9 @@ namespace SavingsTracker.ViewModels
       }
 
       private bool isNewBalance;
+      /// <summary>
+      /// Property to know if the Page is to edit a Balance or create a new one
+      /// </summary>
       public bool IsNewBalance
       {
          get { return isNewBalance; }
@@ -27,14 +36,23 @@ namespace SavingsTracker.ViewModels
       }
 
       private Balance balance;
+      /// <summary>
+      /// The Balance to be edited or the new Balance to be created
+      /// </summary>
       public Balance Balance
       {
          get { return balance; }
          set { SetProperty(ref balance, value); }
       }
 
+      /// <summary>
+      /// Save the modified Balance or new Balance
+      /// </summary>
       public ICommand SaveCommand { get; }
 
+      /// <summary>
+      /// Constructor
+      /// </summary>
       public NewBalancePageViewModel()
       {
          balance = new Balance();
@@ -54,12 +72,16 @@ namespace SavingsTracker.ViewModels
          });
       }
 
+      /// <summary>
+      /// Process the navigation attributes of the Page
+      /// </summary>
+      /// <param name="query"></param>
       public void ApplyQueryAttributes(IDictionary<string, string> query)
       {
-         ProcessPageParameters(query);
+         ProcessPageParametersAsync(query);
       }
 
-      private async void ProcessPageParameters(IDictionary<string, string> query)
+      private async void ProcessPageParametersAsync(IDictionary<string, string> query)
       {
          // The query parameter requires URL decoding.
          // Store if we are making a new Balance or editing an old one

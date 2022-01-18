@@ -10,12 +10,23 @@ using Xamarin.Forms.Platform.Android;
 [assembly: ExportRenderer(typeof(MyEntry), typeof(MyEntryRenderer))]
 namespace SavingsTracker.Droid.Renderers
 {
+   /// <summary>
+   /// Custom renderer class for the custom Entry view MyEntry
+   /// </summary>
    internal class MyEntryRenderer : EntryRenderer
    {
+      /// <summary>
+      /// Constructor
+      /// </summary>
+      /// <param name="context"></param>
       public MyEntryRenderer(Context context) : base(context)
       {
       }
 
+      /// <summary>
+      /// Sets theme specific background color for the view
+      /// </summary>
+      /// <param name="e"></param>
       protected override void OnElementChanged(ElementChangedEventArgs<Entry> e)
       {//TODO: Theme: Entry cursor color should be set according to the theme.
          base.OnElementChanged(e);
@@ -24,7 +35,7 @@ namespace SavingsTracker.Droid.Renderers
          {
             object backgroundColor;
 
-            if (Settings.Theme == Settings.SupportedThemes.dark)
+            if (Settings.Theme == Settings.SupportedThemes.Dark)
             {
                if (Application.Current.Resources.TryGetValue("DarkThemePrimary", out backgroundColor))
                {

@@ -4,18 +4,26 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using SavingsTracker.DependencyServices;
 using System.Drawing;
-using Xamarin.Essentials;
 
 [assembly: Dependency(typeof(SavingsTracker.Droid.DependencyServices.Environment))]
 
 namespace SavingsTracker.Droid.DependencyServices
 {
+   /// <summary>
+   /// Interface for the platform specific Dependency service
+   /// </summary>
    public class Environment : IEnvironment
    {
+      /// <summary>
+      /// Sets the status bar color on the given platform
+      /// </summary>
+      /// <param name="color">The background color to be set</param>
+      /// <param name="darkStatusBarTint">The foreground color of the status bar</param>
       public void SetStatusBarColor(System.Drawing.Color color, bool darkStatusBarTint)
       {
          if (Build.VERSION.SdkInt < Android.OS.BuildVersionCodes.Lollipop)

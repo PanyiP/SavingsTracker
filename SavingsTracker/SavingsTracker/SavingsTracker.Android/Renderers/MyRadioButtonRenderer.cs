@@ -10,12 +10,23 @@ using Xamarin.Forms.Platform.Android;
 [assembly: ExportRenderer(typeof(MyRadioButton), typeof(MyRadioButtonRenderer))]
 namespace SavingsTracker.Droid.Renderers
 {
+   /// <summary>
+   /// Custom renderer class for the custom RadioButton view MyRadioButton
+   /// </summary>
    public class MyRadioButtonRenderer : RadioButtonRenderer
    {
+      /// <summary>
+      /// Constructor
+      /// </summary>
+      /// <param name="context"></param>
       public MyRadioButtonRenderer(Context context) : base(context)
       {
       }
 
+      /// <summary>
+      /// Sets theme specific button color for the view
+      /// </summary>
+      /// <param name="e"></param>
       protected override void OnElementChanged(ElementChangedEventArgs<RadioButton> e)
       {
          base.OnElementChanged(e);
@@ -26,7 +37,7 @@ namespace SavingsTracker.Droid.Renderers
          {
             object buttonColor;
 
-            if (Settings.Theme == Settings.SupportedThemes.dark)
+            if (Settings.Theme == Settings.SupportedThemes.Dark)
             {
                if (Application.Current.Resources.TryGetValue("DarkThemePrimary", out buttonColor))
                {

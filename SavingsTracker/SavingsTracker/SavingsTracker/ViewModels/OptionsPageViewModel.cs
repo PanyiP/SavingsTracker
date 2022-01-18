@@ -6,6 +6,9 @@ using Xamarin.Forms;
 
 namespace SavingsTracker.ViewModels
 {
+   /// <summary>
+   /// View model for the OptionsPage
+   /// </summary>
    internal class OptionsPageViewModel : BaseViewModel
    {//TODO: Theme: Changing the theme is sometimes crashes the App.
       public LocalizedString Title { get; } = new LocalizedString(() => AppResources.Options);
@@ -20,6 +23,9 @@ namespace SavingsTracker.ViewModels
       public LocalizedString Delete { get; } = new LocalizedString(() => AppResources.Delete);
 
       private bool isDefaultLanguageChecked;
+      /// <summary>
+      /// Set if the default language radio button is checked
+      /// </summary>
       public bool IsDefaultLanguageChecked
       {
          get { return isDefaultLanguageChecked; }
@@ -27,6 +33,9 @@ namespace SavingsTracker.ViewModels
       }
 
       private bool isHULanguageChecked;
+      /// <summary>
+      /// Set if the HU language radio button is checked
+      /// </summary>
       public bool IsHULanguageChecked
       {
          get { return isHULanguageChecked; }
@@ -34,6 +43,9 @@ namespace SavingsTracker.ViewModels
       }
 
       private bool isENLanguageChecked;
+      /// <summary>
+      /// Set if the EN language radio button is checked
+      /// </summary>
       public bool IsENLanguageChecked
       {
          get { return isENLanguageChecked; }
@@ -41,6 +53,9 @@ namespace SavingsTracker.ViewModels
       }
 
       private bool isDefaultThemeChecked;
+      /// <summary>
+      /// Set if the default theme radio button is checked
+      /// </summary>
       public bool IsDefaultThemeChecked
       {
          get { return isDefaultThemeChecked; }
@@ -48,6 +63,9 @@ namespace SavingsTracker.ViewModels
       }
 
       private bool isLightThemeChecked;
+      /// <summary>
+      /// Set if the light theme radio button is checked
+      /// </summary>
       public bool IsLightThemeChecked
       {
          get { return isLightThemeChecked; }
@@ -55,32 +73,49 @@ namespace SavingsTracker.ViewModels
       }
 
       private bool isDarkThemeChecked;
+      /// <summary>
+      /// Set if the dark theme radio button is checked
+      /// </summary>
       public bool IsDarkThemeChecked
       {
          get { return isDarkThemeChecked; }
          set { SetProperty(ref isDarkThemeChecked, value); }
       }
 
+      /// <summary>
+      /// Change the language
+      /// </summary>
       public ICommand ChangeLanguageCommand { get; }
+      /// <summary>
+      /// Change the theme
+      /// </summary>
       public ICommand ChangeThemeCommand { get; }
+      /// <summary>
+      /// Delete all data from the SWLite DB
+      /// </summary>
       public ICommand DeleteAllDataCommand { get; }
 
+      /// <summary>
+      /// Constructor
+      /// </summary>
       public OptionsPageViewModel()
       {
-         if (Settings.Culture == Settings.SupportedCultures.DefaultLanguage)
+         // Set the proper Culture radio button to be checked
+         if (Settings.Culture == Settings.SupportedCultures.Default)
          {
             IsDefaultLanguageChecked = true;
          }
-         else if (Settings.Culture == Settings.SupportedCultures.English)
+         else if (Settings.Culture == Settings.SupportedCultures.En)
          {
             IsENLanguageChecked = true;
          }
-         else if (Settings.Culture == Settings.SupportedCultures.Hungarian)
+         else if (Settings.Culture == Settings.SupportedCultures.Hu)
          {
             IsHULanguageChecked = true;
          }
 
-         if (Settings.Theme == Settings.SupportedThemes.DefaultTheme)
+         // Set the proper Theme radio button to be checked
+         if (Settings.Theme == Settings.SupportedThemes.Default)
          {
             IsDefaultThemeChecked = true;
          }
@@ -88,7 +123,7 @@ namespace SavingsTracker.ViewModels
          {
             IsLightThemeChecked = true;
          }
-         else if (Settings.Theme == Settings.SupportedThemes.dark)
+         else if (Settings.Theme == Settings.SupportedThemes.Dark)
          {
             IsDarkThemeChecked = true;
          }
@@ -98,15 +133,15 @@ namespace SavingsTracker.ViewModels
             // Changing the language has code part in App.xaml.cs as well
             if (IsDefaultLanguageChecked)
             {
-               Settings.Culture = Settings.SupportedCultures.DefaultLanguage;
+               Settings.Culture = Settings.SupportedCultures.Default;
             }
             else if (IsENLanguageChecked)
             {
-               Settings.Culture = Settings.SupportedCultures.English;
+               Settings.Culture = Settings.SupportedCultures.En;
             }
             else if (IsHULanguageChecked)
             {
-               Settings.Culture = Settings.SupportedCultures.Hungarian;
+               Settings.Culture = Settings.SupportedCultures.Hu;
             }
          });
 
@@ -115,7 +150,7 @@ namespace SavingsTracker.ViewModels
             // Changing the theme has code part in App.xaml.cs as well
             if (IsDefaultThemeChecked)
             {
-               Settings.Theme = Settings.SupportedThemes.DefaultTheme;
+               Settings.Theme = Settings.SupportedThemes.Default;
             }
             else if (IsLightThemeChecked)
             {
@@ -123,7 +158,7 @@ namespace SavingsTracker.ViewModels
             }
             else if (IsDarkThemeChecked)
             {
-               Settings.Theme = Settings.SupportedThemes.dark;
+               Settings.Theme = Settings.SupportedThemes.Dark;
             }
          });
 
