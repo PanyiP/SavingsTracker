@@ -28,13 +28,19 @@ namespace SavingsTracker.Droid.Renderers
       /// </summary>
       /// <param name="e"></param>
       protected override void OnElementChanged(ElementChangedEventArgs<Entry> e)
-      {//TODO: Theme: Entry cursor color should be set according to the theme.
+      {//TODO: Theme: Entry cursor color should be set according to the theme. -> Accent color should be set based on the theme.
          base.OnElementChanged(e);
 
          if (Control != null)
          {
-            object backgroundColor;
+            // This is to remove the underscore from the letters while the control has the focus
+            if (Control.InputType.HasFlag(Android.Text.InputTypes.ClassText))
+            {
+               Control.InputType = Android.Text.InputTypes.TextVariationVisiblePassword;
+            }
 
+            // This is to set the underline color of the control based on the theme
+            object backgroundColor;
             if (Settings.Theme == Settings.SupportedThemes.Dark)
             {
                if (Application.Current.Resources.TryGetValue("DarkThemePrimary", out backgroundColor))

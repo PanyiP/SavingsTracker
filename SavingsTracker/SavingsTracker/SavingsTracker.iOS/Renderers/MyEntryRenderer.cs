@@ -27,7 +27,7 @@ namespace SavingsTracker.iOS.Renderers
          {
             object backgroundColor;
 
-            if (Settings.Theme == Settings.SupportedThemes.dark)
+            if (Settings.Theme == Settings.SupportedThemes.Dark)
             {
                if (Xamarin.Forms.Application.Current.Resources.TryGetValue("DarkThemePrimary", out backgroundColor))
                {
