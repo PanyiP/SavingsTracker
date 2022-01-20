@@ -118,12 +118,16 @@ namespace SavingsTracker.Services
       {
          if (Culture == SupportedCultures.Default)
          {
+            // Setting LocalizationResourceManager.Current.CurrentCulture is required to have texts change language when localization settings are changed
             LocalizationResourceManager.Current.CurrentCulture = CultureInfo.InstalledUICulture;
+            // Setting CultureInfo.DefaultThreadCurrentCulture is required to change the application localization to properly display DateTime as string for example
+            CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InstalledUICulture;
          }
          else 
          {
             CultureInfo language = new CultureInfo(Culture.ToString());
             LocalizationResourceManager.Current.CurrentCulture = language;
+            CultureInfo.DefaultThreadCurrentCulture = language;
          }
       }
    }

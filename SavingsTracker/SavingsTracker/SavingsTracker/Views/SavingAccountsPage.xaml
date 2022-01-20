@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:SavingsTracker.ViewModels"
              xmlns:fontAwesome="clr-namespace:FontAwesome"
+             xmlns:converters="clr-namespace:SavingsTracker.Converters"
              x:Class="SavingsTracker.Views.SavingAccountsPage"
              x:Name="SavingAccountsPageName"
              Style="{StaticResource PageBackground}"
@@ -11,6 +12,12 @@
    <ContentPage.BindingContext>
       <vm:SavingAccountsPageViewModel />
    </ContentPage.BindingContext>
+
+   <ContentPage.Resources>
+      <ResourceDictionary>
+         <converters:DateTimeToStringConverter x:Key="DateTimeToString" />
+      </ResourceDictionary>
+   </ContentPage.Resources>
 
    <RefreshView IsRefreshing="{Binding IsRefreshBusy}" Command="{Binding RefreshViewCommand}">
       <StackLayout>
@@ -85,7 +92,7 @@
                         <Label Text="{Binding Currency}" Style="{StaticResource BaseLabel}"
                                Grid.Row="1" Grid.Column="1"
                                LineBreakMode="NoWrap" />
-                        <Label Text="{Binding CurrentBalance.DateTime}" Style="{StaticResource BaseLabel}"
+                        <Label Text="{Binding CurrentBalance.DateTime, Converter={StaticResource DateTimeToString}}" Style="{StaticResource BaseLabel}"
                                Grid.Row="1" Grid.Column="2"
                                LineBreakMode="WordWrap"
                                HorizontalTextAlignment="End"

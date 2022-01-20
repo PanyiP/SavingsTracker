@@ -15,8 +15,7 @@
    <ContentPage.Content>
       <StackLayout>
          <local:MyEntry Text="{Binding Balance.Value}" Keyboard="Numeric" Placeholder="{x:Static resource:AppResources.Balance}" />
-         <DatePicker Date="{Binding Balance.DateTime}" />
-         <TimePicker Time="{Binding Balance.DateTime}" />
+         <DatePicker Date="{Binding Balance.DateTime}" Format="d" />
          <Button Text="{x:Static resource:AppResources.Save}" Command="{Binding SaveCommand}" Style="{StaticResource BaseButton}" />
       </StackLayout>
    </ContentPage.Content>

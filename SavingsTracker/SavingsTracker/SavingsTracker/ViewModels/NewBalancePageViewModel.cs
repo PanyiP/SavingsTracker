@@ -12,9 +12,9 @@ namespace SavingsTracker.ViewModels
    /// View model for the NewBalancePage
    /// </summary>
    internal class NewBalancePageViewModel : BaseViewModel, IQueryAttributable
-   {//TODO: Bugfix: Implement binding of TimePicker. It should be bound to a TimeSpan object, but TimeSpan object cannot be saved into SQLite db.
-      //TODO: Theme: TimePicker and DatePicker underlining should change color according to the theme.
-      //TODO: Theme: TimePicker and DatePicker should change color according to the theme.
+   {
+      //TODO: Theme: DatePicker underlining should change color according to the theme. -> Accent color should be set based on the theme.
+      //TODO: Theme: DatePicker should change color according to the theme. -> Accent color should be set based on the theme.
       private string title;
       /// <summary>
       /// The Title of the Page

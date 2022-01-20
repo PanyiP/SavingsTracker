@@ -5,6 +5,7 @@
              xmlns:fontAwesome="clr-namespace:FontAwesome"
              xmlns:xct="clr-namespace:Xamarin.CommunityToolkit.UI.Views;assembly=Xamarin.CommunityToolkit"
              xmlns:resource="clr-namespace:SavingsTracker.Resources"
+             xmlns:converters="clr-namespace:SavingsTracker.Converters"
              x:Name="SavingAccountDetailsPageName"
              x:Class="SavingsTracker.Views.SavingAccountDetailsPage"
              Style="{StaticResource PageBackground}"
@@ -13,6 +14,12 @@
    <ContentPage.BindingContext>
       <vm:SavingAccountDetailsPageViewModel />
    </ContentPage.BindingContext>
+
+   <ContentPage.Resources>
+      <ResourceDictionary>
+         <converters:DateTimeToStringConverter x:Key="DateTimeToString" />
+      </ResourceDictionary>
+   </ContentPage.Resources>
 
    <xct:TabView TabStripBackgroundColor="{AppThemeBinding Light={StaticResource LightThemeSurface}, Dark={StaticResource DarkThemeSurface}}"
                 TabIndicatorColor="{AppThemeBinding Light={StaticResource LightThemePrimary}, Dark={StaticResource DarkThemePrimary}}"
@@ -87,7 +94,7 @@
                               <Label Text="{Binding BindingContext.SavingAccount.Currency, Source={x:Reference SavingAccountDetailsPageName}}" Style="{StaticResource BaseLabel}"
                                      Grid.Row="0" Grid.Column="1"
                                      LineBreakMode="NoWrap" />
-                              <Label Text="{Binding DateTime}" Style="{StaticResource BaseLabel}"
+                              <Label Text="{Binding DateTime, Converter={StaticResource DateTimeToString}}" Style="{StaticResource BaseLabel}"
                                      Grid.Row="0" Grid.Column="2"
                                      LineBreakMode="WordWrap"
                                      HorizontalTextAlignment="End"

@@ -30,8 +30,8 @@ namespace SavingsTracker.Droid.Renderers
       protected override void OnElementChanged(ElementChangedEventArgs<RadioButton> e)
       {
          base.OnElementChanged(e);
-         //TODO: Theme: Radio button button color not changing upon theme change.
-         //TODO: Theme: Radio button underlining should change color according to the theme.
+         //TODO: Theme: Radio button button color not changing upon theme change on the OptionsPage.
+         //TODO: Theme: Radio button underlining should change color according to the theme. -> Accent color should be set based on the theme.
 
          if (Control != null)
          {
