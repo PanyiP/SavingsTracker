@@ -89,24 +89,14 @@ namespace SavingsTracker.Services
          {
             if (Application.Current.Resources.TryGetValue("DarkThemeSurface", out var backgroundColor))
             {
-               System.Drawing.Color DarkThemeBackground =
-                  Color.FromRgba(((Color)backgroundColor).R,
-                                 ((Color)backgroundColor).G,
-                                 ((Color)backgroundColor).B,
-                                 ((Color)backgroundColor).A);
-               Environment.SetStatusBarColor(DarkThemeBackground, false);
+               Environment.SetStatusBarColor((Color)backgroundColor, false);
             }
          }
          else
          {
             if (Application.Current.Resources.TryGetValue("LightThemeSurface", out var backgroundColor))
             {
-               System.Drawing.Color LightThemeBackground =
-                  Color.FromRgba(((Color)backgroundColor).R,
-                                 ((Color)backgroundColor).G,
-                                 ((Color)backgroundColor).B,
-                                 ((Color)backgroundColor).A);
-               Environment.SetStatusBarColor(LightThemeBackground, true);
+               Environment.SetStatusBarColor((Color)backgroundColor, true);
             }
          }
       }
