@@ -84,7 +84,7 @@
                                FontSize="20"
                                FontAttributes="Bold" />
                         <!-- Grid.Row = 1 -->
-                        <Label Text="{Binding CurrentBalance.Value}" Style="{StaticResource BaseLabel}"
+                        <Label Text="{Binding CurrentBalance.Value, StringFormat='{0:N0}'}" Style="{StaticResource BaseLabel}"
                                Grid.Row="1" Grid.Column="0"
                                Margin="20,0,0,0"
                                LineBreakMode="NoWrap"

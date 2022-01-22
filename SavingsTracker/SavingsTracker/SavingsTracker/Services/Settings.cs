@@ -112,12 +112,14 @@ namespace SavingsTracker.Services
             LocalizationResourceManager.Current.CurrentCulture = CultureInfo.InstalledUICulture;
             // Setting CultureInfo.DefaultThreadCurrentCulture is required to change the application localization to properly display DateTime as string for example
             CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InstalledUICulture;
+            CultureInfo.DefaultThreadCurrentCulture.NumberFormat.NumberGroupSeparator = " ";
          }
          else 
          {
             CultureInfo language = new CultureInfo(Culture.ToString());
             LocalizationResourceManager.Current.CurrentCulture = language;
             CultureInfo.DefaultThreadCurrentCulture = language;
+            CultureInfo.DefaultThreadCurrentCulture.NumberFormat.NumberGroupSeparator = " ";
          }
       }
    }

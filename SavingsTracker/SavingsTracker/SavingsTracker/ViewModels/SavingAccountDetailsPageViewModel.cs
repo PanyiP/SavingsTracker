@@ -1,9 +1,11 @@
-﻿using SavingsTracker.Models;
+﻿using Microcharts;
+using SavingsTracker.Models;
 using SavingsTracker.Resources;
 using SavingsTracker.Services;
 using SavingsTracker.Views;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Windows.Input;
@@ -16,7 +18,7 @@ namespace SavingsTracker.ViewModels
    /// View model for the SavingAccountDetailsPage
    /// </summary>
    internal class SavingAccountDetailsPageViewModel : BaseViewModel, IQueryAttributable
-   {//TODO: New feature: Implement graph view
+   {
       public LocalizedString NewBalance { get; } = new LocalizedString(() => AppResources.NewBalancePageTitle);
 
       /// <summary>
@@ -42,6 +44,15 @@ namespace SavingsTracker.ViewModels
       {
          get { return balances; }
          set { SetProperty(ref balances, value); }
+      }
+
+      /// <summary>
+      /// The Balances to be shown in the Chart
+      /// </summary>
+      public ObservableCollection<ChartEntry> ChartEntries
+      {
+         get;
+         private set;
       }
 
       private bool isRefreshBusy;
@@ -93,6 +104,18 @@ namespace SavingsTracker.ViewModels
                // Get the Balances of the current SavingAccount
                var temp = await SavingAccountDBService.GetBalancesAsync(SavingAccount);
                Balances = new ObservableCollection<Balance>(temp.OrderByDescending(item => item.DateTime));
+
+               // Update container for the ChartView as well
+               ChartEntries?.Clear();
+               ChartEntries = new ObservableCollection<ChartEntry>();
+               foreach (var balance in temp)
+               {
+                  ChartEntries.Add(new ChartEntry((float)balance.Value)
+                  {
+                     Label = balance.DateTime.ToString("d", CultureInfo.DefaultThreadCurrentCulture),
+                     ValueLabel = balance.Value.ToString("N0") + " " + SavingAccount.Currency
+                  });
+               }
 
                IsRefreshBusy = false;
             },
