@@ -10,7 +10,7 @@ namespace SavingsTracker.ViewModels
    /// View model for the OptionsPage
    /// </summary>
    internal class OptionsPageViewModel : BaseViewModel
-   {//TODO: Theme: Changing the theme is sometimes crashes the App.
+   {
       public LocalizedString Title { get; } = new LocalizedString(() => AppResources.Options);
       public LocalizedString LanguageOptionsTitle { get; } = new LocalizedString(() => AppResources.LanguageOptionsTitle);
       public LocalizedString Default { get; } = new LocalizedString(() => AppResources.Default);

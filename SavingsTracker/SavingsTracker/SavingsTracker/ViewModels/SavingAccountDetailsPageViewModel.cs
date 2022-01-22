@@ -108,7 +108,7 @@ namespace SavingsTracker.ViewModels
                // Update container for the ChartView as well
                ChartEntries?.Clear();
                ChartEntries = new ObservableCollection<ChartEntry>();
-               foreach (var balance in temp)
+               foreach (var balance in temp.OrderBy(item => item.DateTime))
                {
                   ChartEntries.Add(new ChartEntry((float)balance.Value)
                   {
