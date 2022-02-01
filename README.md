@@ -7,3 +7,4 @@ Features
 - SQLite DB to store data on phone
 - Add, Remove and Modify new Saving Accounts
 - Add, Remove and Modify Balance of a Saving Account
+- Parse SMS-es from Raiffeisen Bank to see monthly earnings / spendings and current balance

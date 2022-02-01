@@ -108,6 +108,27 @@
             </Style.Triggers>
          </Style>
 
+         <Style TargetType="FlyoutItem" x:Key="MonthlyIncomeExpenseFlyoutItem" >
+            <Style.Triggers>
+               <Trigger TargetType="FlyoutItem" Property="IsChecked" Value="True">
+                  <Setter Property="FlyoutIcon">
+                     <Setter.Value>
+                        <FontImageSource FontFamily="FAFS" Glyph="{x:Static fontAwesome:FontAwesomeIcons.Wallet}"
+                                         Color="{AppThemeBinding Light={StaticResource LightThemePrimary}, Dark={StaticResource DarkThemePrimary}}" />
+                     </Setter.Value>
+                  </Setter>
+               </Trigger>
+               <Trigger TargetType="FlyoutItem" Property="IsChecked" Value="False">
+                  <Setter Property="FlyoutIcon">
+                     <Setter.Value>
+                        <FontImageSource FontFamily="FAFS" Glyph="{x:Static fontAwesome:FontAwesomeIcons.Wallet}"
+                                         Color="{AppThemeBinding Light={StaticResource LightThemeOnSurface}, Dark={StaticResource DarkThemeOnSurface}}" />
+                     </Setter.Value>
+                  </Setter>
+               </Trigger>
+            </Style.Triggers>
+         </Style>
+
          <!--
             Custom Style you can apply to any Flyout Item
             -->
@@ -151,6 +172,10 @@
     -->
    <FlyoutItem Title="{Binding SavingAccounts.Localized, Mode=OneWay}" Style="{StaticResource SavingAccountsFlyoutItem}" >
       <ShellContent Route="SavingAccountssPage" ContentTemplate="{DataTemplate local:SavingAccountsPage}" />
+   </FlyoutItem>
+
+   <FlyoutItem Title="{Binding MonthlyIncomeExpense.Localized, Mode=OneWay}" Style="{StaticResource MonthlyIncomeExpenseFlyoutItem}" >
+      <ShellContent Route="MonthlyIncomeExpensePage" ContentTemplate="{DataTemplate local:MonthlyIncomeExpensePage}" />
    </FlyoutItem>
 
    <FlyoutItem Title="{Binding Options.Localized, Mode=OneWay}" Style="{StaticResource OptionsFlyoutItem}" >

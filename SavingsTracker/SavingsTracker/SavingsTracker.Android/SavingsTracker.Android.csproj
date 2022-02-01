@@ -57,6 +57,9 @@
     <PackageReference Include="Microcharts.Forms">
       <Version>0.9.5.9</Version>
     </PackageReference>
+    <PackageReference Include="Plugin.CurrentActivity">
+      <Version>2.1.0.4</Version>
+    </PackageReference>
     <PackageReference Include="sqlite-net-pcl">
       <Version>1.8.116</Version>
     </PackageReference>
@@ -68,6 +71,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DependencyServices\Environment.cs" />
+    <Compile Include="DependencyServices\SMSReader.cs" />
     <Compile Include="Renderers\MyEntryRenderer.cs" />
     <Compile Include="Renderers\MyRadioButtonRenderer.cs" />
     <Compile Include="MainActivity.cs" />

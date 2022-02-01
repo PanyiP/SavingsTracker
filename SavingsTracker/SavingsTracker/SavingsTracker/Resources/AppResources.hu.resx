@@ -153,6 +153,9 @@
   <data name="EnglishLanguage" xml:space="preserve">
     <value>Angol</value>
   </data>
+  <data name="Expense" xml:space="preserve">
+    <value>Kiadás</value>
+  </data>
   <data name="Graph" xml:space="preserve">
     <value>Grafikon</value>
   </data>
@@ -162,11 +165,20 @@
   <data name="HungarianLanguage" xml:space="preserve">
     <value>Magyar</value>
   </data>
+  <data name="Income" xml:space="preserve">
+    <value>Bevétel</value>
+  </data>
   <data name="LanguageOptionsTitle" xml:space="preserve">
     <value>Nyelv</value>
   </data>
   <data name="LightTheme" xml:space="preserve">
     <value>Világos</value>
+  </data>
+  <data name="Month" xml:space="preserve">
+    <value>Hónap</value>
+  </data>
+  <data name="MonthlyIETitle" xml:space="preserve">
+    <value>Havi Bevétel / Kiadás</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Név</value>

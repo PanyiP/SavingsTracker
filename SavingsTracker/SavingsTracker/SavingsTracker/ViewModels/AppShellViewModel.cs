@@ -10,5 +10,6 @@ namespace SavingsTracker.ViewModels
    {
       public LocalizedString SavingAccounts { get; } = new LocalizedString(() => AppResources.SavingAccounts);
       public LocalizedString Options { get; } = new LocalizedString(() => AppResources.Options);
+      public LocalizedString MonthlyIncomeExpense { get; } = new LocalizedString(() => AppResources.MonthlyIETitle);
    }
 }

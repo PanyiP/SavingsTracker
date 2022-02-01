@@ -2,13 +2,17 @@
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
+using Android.Util;
 using Android.Views;
 using Android.Widget;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-using Xamarin.Forms.Internals;
 using SavingsTracker.DependencyServices;
 using System.Drawing;
+using AndroidX.Core.App;
+using Plugin.CurrentActivity;
+using Google.Android.Material.Snackbar;
+using System;
 
 [assembly: Dependency(typeof(SavingsTracker.Droid.DependencyServices.Environment))]
 

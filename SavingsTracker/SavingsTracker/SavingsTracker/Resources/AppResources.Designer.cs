@@ -169,6 +169,15 @@ namespace SavingsTracker.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Expense.
+        /// </summary>
+        internal static string Expense {
+            get {
+                return ResourceManager.GetString("Expense", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Graph.
         /// </summary>
         internal static string Graph {
@@ -196,6 +205,15 @@ namespace SavingsTracker.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Income.
+        /// </summary>
+        internal static string Income {
+            get {
+                return ResourceManager.GetString("Income", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Language.
         /// </summary>
         internal static string LanguageOptionsTitle {
@@ -210,6 +228,24 @@ namespace SavingsTracker.Resources {
         internal static string LightTheme {
             get {
                 return ResourceManager.GetString("LightTheme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Month.
+        /// </summary>
+        internal static string Month {
+            get {
+                return ResourceManager.GetString("Month", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Monthly Income / Expense.
+        /// </summary>
+        internal static string MonthlyIETitle {
+            get {
+                return ResourceManager.GetString("MonthlyIETitle", resourceCulture);
             }
         }
         
