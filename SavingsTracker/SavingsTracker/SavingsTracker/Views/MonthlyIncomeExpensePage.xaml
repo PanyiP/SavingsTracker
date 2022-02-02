@@ -4,6 +4,7 @@
              xmlns:vm="clr-namespace:SavingsTracker.ViewModels"
              xmlns:converters="clr-namespace:SavingsTracker.Converters"
              x:Class="SavingsTracker.Views.MonthlyIncomeExpensePage"
+             x:Name="MonthlyIncomeExpensePageName"
              Style="{StaticResource PageBackground}"
              Title="{Binding Title.Localized}">
 
@@ -42,14 +43,20 @@
                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <!-- Grid.Row = 0 -->
-                        <Label Text="{Binding Month.Localized}" Style="{StaticResource TitleLabel}" Grid.Row="0" Grid.Column="0" />
-                        <Label Text="{Binding Key, Converter={StaticResource DateTimeToString}}" Style="{StaticResource BaseLabel}"  Grid.Row="0" Grid.Column="1" />
+                        <Label Text="{Binding BindingContext.Month.Localized, Source={x:Reference MonthlyIncomeExpensePageName}}" Style="{StaticResource BaseLabel}"
+                               Grid.Row="0" Grid.Column="0" />
+                        <Label Text="{Binding Key, Converter={StaticResource DateTimeToString}}" Style="{StaticResource BaseLabel}"
+                               Grid.Row="0" Grid.Column="1" />
                         <!-- Grid.Row = 1 -->
-                        <Label Text="{Binding Income.Localized}" Style="{StaticResource TitleLabel}"  Grid.Row="1" Grid.Column="0" TextColor="Green" />
-                        <Label Text="{Binding Value.Income, StringFormat='{0:N0}'}" Style="{StaticResource BaseLabel}"  Grid.Row="1" Grid.Column="1" TextColor="Green" />
+                        <Label Text="{Binding BindingContext.Income.Localized, Source={x:Reference MonthlyIncomeExpensePageName}}" Style="{StaticResource BaseLabel}"
+                               Grid.Row="1" Grid.Column="0" TextColor="Green" />
+                        <Label Text="{Binding Value.Income, StringFormat='{0:N0}'}" Style="{StaticResource BaseLabel}"
+                               Grid.Row="1" Grid.Column="1" TextColor="Green" />
                         <!-- Grid.Row = 2 -->
-                        <Label Text="{Binding Expense.Localized}" Style="{StaticResource TitleLabel}"  Grid.Row="2" Grid.Column="0" TextColor="Red" />
-                        <Label Text="{Binding Value.Expense, StringFormat='{0:N0}'}" Style="{StaticResource BaseLabel}"  Grid.Row="2" Grid.Column="1"  TextColor="Red" />
+                        <Label Text="{Binding BindingContext.Expense.Localized, Source={x:Reference MonthlyIncomeExpensePageName}}" Style="{StaticResource BaseLabel}"
+                               Grid.Row="2" Grid.Column="0" TextColor="Red" />
+                        <Label Text="{Binding Value.Expense, StringFormat='{0:N0}'}" Style="{StaticResource BaseLabel}"
+                               Grid.Row="2" Grid.Column="1"  TextColor="Red" />
                         <!-- Grid.Row = 3 -->
                         <Line Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" />
                      </Grid>

@@ -3,6 +3,7 @@ using SavingsTracker.Resources;
 using SavingsTracker.Services;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.CommunityToolkit.Helpers;
 using Xamarin.Forms;
@@ -12,10 +13,10 @@ namespace SavingsTracker.ViewModels
    internal class MonthlyIncomeExpensePageViewModel : BaseViewModel
    {
       public LocalizedString Title { get; } = new LocalizedString(() => AppResources.MonthlyIETitle);
-      public LocalizedString Month { get; } = new LocalizedString(() => AppResources.Month);
-      public LocalizedString Income { get; } = new LocalizedString(() => AppResources.Income);
-      public LocalizedString Expense { get; } = new LocalizedString(() => AppResources.Expense);
-      public LocalizedString Balance { get; } = new LocalizedString(() => AppResources.Balance);
+      public LocalizedString Month { get; } = new LocalizedString(() => AppResources.Month + ": ");
+      public LocalizedString Income { get; } = new LocalizedString(() => AppResources.Income + ": ");
+      public LocalizedString Expense { get; } = new LocalizedString(() => AppResources.Expense + ": ");
+      public LocalizedString Balance { get; } = new LocalizedString(() => AppResources.Balance + ": ");
 
       private Dictionary<DateTime, MonthlyIncomeExpense> incomeAndExpenseByMonth;
       public Dictionary<DateTime, MonthlyIncomeExpense> IncomeAndExpenseByMonth
@@ -48,13 +49,16 @@ namespace SavingsTracker.ViewModels
          RefreshCommand = new Command(
             execute: () =>
             {
-               IsBusy = true;
+               Task.Run(() =>
+                 {
+                    IsBusy = true;
 
-               IncomeAndExpenseByMonth = smsParserService.GetAllIncomeAndExpenseByMonth();
+                    IncomeAndExpenseByMonth = smsParserService.GetAllIncomeAndExpenseByMonth();
 
-               CurrentBalance = smsParserService.GetCurrentBalance();
+                    CurrentBalance = smsParserService.GetCurrentBalance();
 
-               IsBusy = false;
+                    IsBusy = false;
+                 });
             },
             canExecute: () =>
             {
