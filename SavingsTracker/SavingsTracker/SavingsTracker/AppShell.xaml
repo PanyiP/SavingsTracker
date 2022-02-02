@@ -6,6 +6,7 @@
        xmlns:vm="clr-namespace:SavingsTracker.ViewModels"
        Title="SavingsTracker"
        x:Class="SavingsTracker.AppShell"
+       x:DataType="vm:AppShellViewModel"
        FlyoutBackgroundColor="{AppThemeBinding Light={StaticResource LightThemeSurface}, Dark={StaticResource DarkThemeSurface}}">
 
    <!--

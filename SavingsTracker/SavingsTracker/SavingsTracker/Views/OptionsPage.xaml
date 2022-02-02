@@ -4,8 +4,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:SavingsTracker.ViewModels"
              x:Class="SavingsTracker.Views.OptionsPage"
+             x:DataType="vm:OptionsPageViewModel"
              Style="{StaticResource PageBackground}"
-             Title="{Binding Title.Localized}">
+             Title="{Binding Title.Localized, Mode=OneWay}">
 
    <ContentPage.BindingContext>
       <vm:OptionsPageViewModel />
@@ -30,7 +31,7 @@
             <ColumnDefinition Width="*" />
          </Grid.ColumnDefinitions>
 
-         <Label Text="{Binding LanguageOptionsTitle.Localized}" Style="{StaticResource TitleLabel}" Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" Margin="10,10,0,0" />
+         <Label Text="{Binding LanguageOptionsTitle.Localized, Mode=OneWay}" Style="{StaticResource TitleLabel}" Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" Margin="10,10,0,0" />
          <local:MyRadioButton GroupName="Language" Grid.Row="1" Grid.Column="0" Content="{Binding Default.Localized}"
                               IsChecked="{Binding IsDefaultLanguageChecked}" CheckedChanged="LanguageRadioButton_CheckedChanged" Value="defaultLanguage" />
          <local:MyRadioButton GroupName="Language" Grid.Row="2" Grid.Column="0" Content="{Binding EnglishLanguage.Localized}"
@@ -38,7 +39,7 @@
          <local:MyRadioButton GroupName="Language" Grid.Row="3" Grid.Column="0" Content="{Binding HungarianLanguage.Localized}"
                               IsChecked="{Binding IsHULanguageChecked}" CheckedChanged="LanguageRadioButton_CheckedChanged" Value="hu" />
 
-         <Label Text="{Binding ThemeOptionsTitle.Localized}" Style="{StaticResource TitleLabel}" Grid.Row="4" Grid.Column="0" HorizontalOptions="Start" Margin="10,10,0,0" />
+         <Label Text="{Binding ThemeOptionsTitle.Localized, Mode=OneWay}" Style="{StaticResource TitleLabel}" Grid.Row="4" Grid.Column="0" HorizontalOptions="Start" Margin="10,10,0,0" />
          <local:MyRadioButton GroupName="Theme" Grid.Row="5" Grid.Column="0" Content="{Binding Default.Localized}"
                               IsChecked="{Binding IsDefaultThemeChecked}" CheckedChanged="ThemeRadioButton_CheckedChanged" Value="defaultTheme" />
          <local:MyRadioButton GroupName="Theme" Grid.Row="6" Grid.Column="0" Content="{Binding LightTheme.Localized}"
@@ -46,8 +47,8 @@
          <local:MyRadioButton GroupName="Theme" Grid.Row="7" Grid.Column="0" Content="{Binding DarkTheme.Localized}"
                               IsChecked="{Binding IsDarkThemeChecked}" CheckedChanged="ThemeRadioButton_CheckedChanged" Value="dark" />
 
-         <Label Text="{Binding DeleteDbOptionsTitle.Localized}" Style="{StaticResource TitleLabel}" Grid.Row="8" Grid.Column="0" HorizontalOptions="Start" Margin="10,10,0,0" />
-         <Button Text="{Binding Delete.Localized}" Command="{Binding DeleteAllDataCommand}" Style="{StaticResource BaseButton}" Grid.Row="9" Grid.Column="0" Margin="20,10,0,0" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" />
+         <Label Text="{Binding DeleteDbOptionsTitle.Localized, Mode=OneWay}" Style="{StaticResource TitleLabel}" Grid.Row="8" Grid.Column="0" HorizontalOptions="Start" Margin="10,10,0,0" />
+         <Button Text="{Binding Delete.Localized, Mode=OneWay}" Command="{Binding DeleteAllDataCommand}" Style="{StaticResource BaseButton}" Grid.Row="9" Grid.Column="0" Margin="20,10,0,0" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" />
       </Grid>
    </ContentPage.Content>
 </ContentPage>

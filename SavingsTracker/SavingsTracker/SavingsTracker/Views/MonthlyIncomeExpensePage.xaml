@@ -3,8 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:SavingsTracker.ViewModels"
              xmlns:converters="clr-namespace:SavingsTracker.Converters"
+             xmlns:models="clr-namespace:SavingsTracker.Models"
              x:Class="SavingsTracker.Views.MonthlyIncomeExpensePage"
              x:Name="MonthlyIncomeExpensePageName"
+             x:DataType="vm:MonthlyIncomeExpensePageViewModel"
              Style="{StaticResource PageBackground}"
              Title="{Binding Title.Localized}">
 
@@ -22,15 +24,15 @@
       <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsBusy}">
          <StackLayout>
             <StackLayout Orientation="Horizontal">
-               <Label Style="{StaticResource BaseLabel}" Text="{Binding Balance.Localized}" Margin="10,10,0,10" />
-               <Label Style="{StaticResource BaseLabel}" Text="{Binding CurrentBalance, StringFormat='{0}'}" Margin="0,10,0,10" />
+               <Label Style="{StaticResource BaseLabel}" Text="{Binding Balance.Localized, Mode=OneWay}" Margin="10,10,0,10" />
+               <Label Style="{StaticResource BaseLabel}" Text="{Binding CurrentBalance, Mode=OneWay, StringFormat='{0}'}" Margin="0,10,0,10" />
             </StackLayout>
             <CollectionView x:Name="MonthlyCollectionView"
                 ItemsSource="{Binding IncomeAndExpenseByMonth}"
                 SelectionMode="None">
 
                <CollectionView.ItemTemplate>
-                  <DataTemplate>
+                  <DataTemplate x:DataType="models:MonthlyIncomeExpense">
                      <Grid Padding="10" BackgroundColor="{AppThemeBinding Light={StaticResource LightThemeBackground}, Dark={StaticResource DarkThemeBackground}}">
                         <Grid.RowDefinitions>
                            <RowDefinition Height="auto" />
@@ -43,19 +45,19 @@
                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <!-- Grid.Row = 0 -->
-                        <Label Text="{Binding BindingContext.Month.Localized, Source={x:Reference MonthlyIncomeExpensePageName}}" Style="{StaticResource BaseLabel}"
+                        <Label Text="{Binding BindingContext.Month.Localized, Mode=OneWay, Source={x:Reference MonthlyIncomeExpensePageName}}" Style="{StaticResource BaseLabel}"
                                Grid.Row="0" Grid.Column="0" />
-                        <Label Text="{Binding Key, Converter={StaticResource DateTimeToString}}" Style="{StaticResource BaseLabel}"
+                        <Label Text="{Binding YearAndMonth, Mode=OneWay, Converter={StaticResource DateTimeToString}}" Style="{StaticResource BaseLabel}"
                                Grid.Row="0" Grid.Column="1" />
                         <!-- Grid.Row = 1 -->
-                        <Label Text="{Binding BindingContext.Income.Localized, Source={x:Reference MonthlyIncomeExpensePageName}}" Style="{StaticResource BaseLabel}"
+                        <Label Text="{Binding BindingContext.Income.Localized, Mode=OneWay, Source={x:Reference MonthlyIncomeExpensePageName}}" Style="{StaticResource BaseLabel}"
                                Grid.Row="1" Grid.Column="0" TextColor="Green" />
-                        <Label Text="{Binding Value.Income, StringFormat='{0:N0}'}" Style="{StaticResource BaseLabel}"
+                        <Label Text="{Binding Income, Mode=OneWay, StringFormat='{0:N0}'}" Style="{StaticResource BaseLabel}"
                                Grid.Row="1" Grid.Column="1" TextColor="Green" />
                         <!-- Grid.Row = 2 -->
-                        <Label Text="{Binding BindingContext.Expense.Localized, Source={x:Reference MonthlyIncomeExpensePageName}}" Style="{StaticResource BaseLabel}"
+                        <Label Text="{Binding BindingContext.Expense.Localized, Mode=OneWay, Source={x:Reference MonthlyIncomeExpensePageName}}" Style="{StaticResource BaseLabel}"
                                Grid.Row="2" Grid.Column="0" TextColor="Red" />
-                        <Label Text="{Binding Value.Expense, StringFormat='{0:N0}'}" Style="{StaticResource BaseLabel}"
+                        <Label Text="{Binding Expense, Mode=OneWay, StringFormat='{0:N0}'}" Style="{StaticResource BaseLabel}"
                                Grid.Row="2" Grid.Column="1"  TextColor="Red" />
                         <!-- Grid.Row = 3 -->
                         <Line Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" />

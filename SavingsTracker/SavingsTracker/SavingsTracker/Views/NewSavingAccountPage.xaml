@@ -6,8 +6,9 @@
              xmlns:resource="clr-namespace:SavingsTracker.Resources"
              x:Class="SavingsTracker.Views.NewSavingAccountPage"
              x:Name="SavingsPageName"
+             x:DataType="vm:NewSavingAccountPageViewModel"
              Style="{StaticResource PageBackground}"
-             Title="{Binding Title}">
+             Title="{Binding Title, Mode=OneWay}">
 
    <ContentPage.BindingContext>
       <vm:NewSavingAccountPageViewModel />
