@@ -197,32 +197,30 @@ namespace SavingsTracker.Services
       /// Gets all Income and Expenses groupped by month
       /// </summary>
       /// <returns></returns>
-      public Dictionary<DateTime, MonthlyIncomeExpense> GetAllIncomeAndExpenseByMonth()
+      public List<MonthlyIncomeExpense> GetAllIncomeAndExpenseByMonth()
       {
-         Dictionary<DateTime, MonthlyIncomeExpense> AllIncomeAndExpense = new Dictionary<DateTime, MonthlyIncomeExpense>();
+         List<MonthlyIncomeExpense> AllIncomeAndExpense = new List<MonthlyIncomeExpense>();
 
          foreach (var sms in GetAllExpenseSMS())
          {
-            DateTime smsKeyToCompare = new DateTime(sms.Date.Year, sms.Date.Month, 1);
-
-            if (!AllIncomeAndExpense.ContainsKey(smsKeyToCompare))
+            if (!AllIncomeAndExpense.Any(p => p.YearAndMonth.Year == sms.Date.Year && p.YearAndMonth.Month == sms.Date.Month))
             {
-               AllIncomeAndExpense.Add(smsKeyToCompare, new MonthlyIncomeExpense(smsKeyToCompare));
+               AllIncomeAndExpense.Add(new MonthlyIncomeExpense(new DateTime(sms.Date.Year, sms.Date.Month, 1)));
             }
 
-            AllIncomeAndExpense[smsKeyToCompare].Expense += GetIncomeExpenseValueFromSMS(sms);
+            int index = AllIncomeAndExpense.FindIndex(p => p.YearAndMonth.Year == sms.Date.Year && p.YearAndMonth.Month == sms.Date.Month);
+            AllIncomeAndExpense[index].Expense += GetIncomeExpenseValueFromSMS(sms);
          }
 
          foreach (var sms in GetAllIncomeSMS())
          {
-            DateTime smsKeyToCompare = new DateTime(sms.Date.Year, sms.Date.Month, 1);
-
-            if (!AllIncomeAndExpense.ContainsKey(smsKeyToCompare))
+            if (!AllIncomeAndExpense.Any(p => p.YearAndMonth.Year == sms.Date.Year && p.YearAndMonth.Month == sms.Date.Month))
             {
-               AllIncomeAndExpense.Add(smsKeyToCompare, new MonthlyIncomeExpense(smsKeyToCompare));
+               AllIncomeAndExpense.Add(new MonthlyIncomeExpense(new DateTime(sms.Date.Year, sms.Date.Month, 1)));
             }
 
-            AllIncomeAndExpense[smsKeyToCompare].Income += GetIncomeExpenseValueFromSMS(sms);
+            int index = AllIncomeAndExpense.FindIndex(p => p.YearAndMonth.Year == sms.Date.Year && p.YearAndMonth.Month == sms.Date.Month);
+            AllIncomeAndExpense[index].Income += GetIncomeExpenseValueFromSMS(sms);
          }
 
          return AllIncomeAndExpense;

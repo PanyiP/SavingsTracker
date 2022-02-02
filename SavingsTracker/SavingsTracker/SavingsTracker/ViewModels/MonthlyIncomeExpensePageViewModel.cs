@@ -18,8 +18,8 @@ namespace SavingsTracker.ViewModels
       public LocalizedString Expense { get; } = new LocalizedString(() => AppResources.Expense + ": ");
       public LocalizedString Balance { get; } = new LocalizedString(() => AppResources.Balance + ": ");
 
-      private Dictionary<DateTime, MonthlyIncomeExpense> incomeAndExpenseByMonth;
-      public Dictionary<DateTime, MonthlyIncomeExpense> IncomeAndExpenseByMonth
+      private List<MonthlyIncomeExpense> incomeAndExpenseByMonth;
+      public List<MonthlyIncomeExpense> IncomeAndExpenseByMonth
       {
          get => incomeAndExpenseByMonth;
          set
