@@ -4,6 +4,7 @@
              xmlns:vm="clr-namespace:SavingsTracker.ViewModels"
              xmlns:converters="clr-namespace:SavingsTracker.Converters"
              xmlns:models="clr-namespace:SavingsTracker.Models"
+             xmlns:controls="clr-namespace:SavingsTracker.CustomControls"
              x:Class="SavingsTracker.Views.MonthlyIncomeExpensePage"
              x:Name="MonthlyIncomeExpensePageName"
              x:DataType="vm:MonthlyIncomeExpensePageViewModel"
@@ -23,6 +24,7 @@
    <ContentPage.Content>
       <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsBusy}">
          <StackLayout>
+            <controls:AdMobAdView AdUnitId="ca-app-pub-7564494446123091/8207429982" Margin="0,10,0,0" />
             <StackLayout Orientation="Horizontal">
                <Label Style="{StaticResource BaseLabel}" Text="{Binding Balance.Localized, Mode=OneWay}" Margin="10,10,0,10" />
                <Label Style="{StaticResource BaseLabel}" Text="{Binding CurrentBalance, Mode=OneWay, StringFormat='{0}'}" Margin="0,10,0,10" />

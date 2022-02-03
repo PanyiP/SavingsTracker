@@ -5,6 +5,7 @@
              xmlns:fontAwesome="clr-namespace:FontAwesome"
              xmlns:converters="clr-namespace:SavingsTracker.Converters"
              xmlns:models="clr-namespace:SavingsTracker.Models"
+             xmlns:controls="clr-namespace:SavingsTracker.CustomControls"
              x:Class="SavingsTracker.Views.SavingAccountsPage"
              x:Name="SavingAccountsPageName"
              x:DataType="vm:SavingAccountsPageViewModel"
@@ -23,6 +24,7 @@
 
    <RefreshView IsRefreshing="{Binding IsRefreshBusy}" Command="{Binding RefreshViewCommand}">
       <StackLayout>
+         <controls:AdMobAdView AdUnitId="ca-app-pub-7564494446123091/8207429982" Margin="0,10,0,0" />
          <CollectionView x:Name="ItemsListView"
                 ItemsSource="{Binding SavingAccounts}"
                 SelectionMode="None">
